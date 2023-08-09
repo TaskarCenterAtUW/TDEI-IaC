@@ -1,0 +1,6 @@
+{
+    "cosmosdb": {
+        "name": "tdei-logger",
+        "type" : "MongoDB"
+    }
+}

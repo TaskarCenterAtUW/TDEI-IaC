@@ -1,0 +1,10 @@
+{
+    "tdei" : {
+        "sku" : "Standard_LRS",
+        "containers" : [
+            "gtfsflex",
+            "gtfspathways",
+            "osw"
+        ]
+    }
+}

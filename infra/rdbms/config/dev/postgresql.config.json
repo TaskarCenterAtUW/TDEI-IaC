@@ -1,0 +1,20 @@
+{
+    "server_name" : "tdei-postgresql",
+    "secrets" : {
+        "administrator_login" : "{postgresql-administrator-login}",
+        "administrator_login_password" : "{postgresql-administrator-password}"
+    },
+    "sku": {
+        "name": "Standard_B2s",
+        "tier": "Burstable"
+    },
+    "size" : 32,
+    "version" : 14,
+    "create_mode" : "Create",
+    "database" : [
+        "tdei",
+        "gtfsflex",
+        "osw",
+        "gtfspathways"
+    ]
+}

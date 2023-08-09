@@ -1,0 +1,10 @@
+*.pyc
+.venv
+.venv/*
+.idea
+.idea/*
+.rakesh
+infra/keyvault/config/dev/secrets.json
+infra/keyvault/config/test/secrets.json
+infra/keyvault/config/stage/secrets.json
+infra/keyvault/config/prod/secrets.json

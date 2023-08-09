@@ -1,0 +1,215 @@
+{
+    "service_bus": {
+        "name": "tdei-service-bus",
+        "sku": {
+            "name": "Standard",
+            "tier": "Standard"
+        }
+    },
+    "queue":{
+        "name": "tdei-ms-log",
+        "max_size_in_megabytes": 1024,
+        "max_delivery_count":10,
+        "message_time_to_live":"P14D",
+        "message_lock_duration":"P0D0H0M30S"
+    },
+    "topics": [
+        {
+            "name": "gtfs-flex-upload",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "upload-validation-processor",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "gtfs-flex-validation",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "gtfs-flex-validation-result",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "gtfs-pathways-upload",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "log",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                },
+                {
+                    "name": "uploadprocessor",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                },
+                {
+                    "name": "upload-validation-processor",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "gtfs-pathways-validation",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "log",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                },
+                {
+                    "name": "gtfs-pathways-validation-result",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "osw-upload",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "upload-validation-processor",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "osw-validation",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "osw-validation-result",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "gtfs-flex-data-service",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            }
+        },
+        {
+            "name": "gtfs-pathways-data-service",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            }
+        },
+        {
+            "name": "osw-data-service",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            }
+        },
+        {
+            "name": "python-gtfs-flex-upload",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            }
+        },
+        {
+            "name": "python-gtfs-flex-validation",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            }
+        }
+    ],
+    "tags": {
+        "env": "test"
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "logAnalytics": {
+    "workSpaceName": "TDEI",
+    "properties": {
+      "retentionInDays": 30,
+      "sku": {
+        "name": "PerGB2018"
+      }
+    },
+    "tags": {"env": "dev"}
+  },
+  "appInsights": {
+    "name": "tdeiAppInsights",
+    "tags": {"env": "dev"}
+  }
+}

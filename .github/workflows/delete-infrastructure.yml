@@ -1,0 +1,23 @@
+name: Delete Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment-name:
+        required: true
+        description: "Name of the environment to be deleted"
+        type: string
+
+jobs:
+  delete-infra:
+    if: contains('["uwtcat","rdevalap"]', github.actor)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Delete / Destroy infrastructure
+        run: |
+          az login --service-principal -u ${{ secrets.AZURE_USER}} -p ${{ secrets.AZURE_PASSWORD}} --tenant ${{ secrets.AZURE_TENANT_ID}}
+          pip install -r requirements.txt
+          python delete-env.py -e ${{ github.event.inputs.environment-name }} -s ${{ secrets.AZURE_SUBSCRIPTION}}
+    
+

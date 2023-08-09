@@ -1,0 +1,48 @@
+name: Provision Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment-name:
+        required: true
+        description: "Name of the environment to be provisioned in lowercase"
+        type: string
+      config-to-use:
+        type: choice
+        description: Choose environment to copy configuration
+        options:
+          - dev
+          - test
+          - stage
+          - prod
+      region:
+        type: choice
+        description: Choose Azure region to deploy resources
+        options:
+          - eastus
+          - eastus2
+          - southcentralus
+          - westus2
+          - westus3
+          - centralus
+          - northcentralus
+          - westus
+          - westcentralus
+
+jobs:
+  provision-infra:
+    if: contains('["uwtcat","rdevalap"]', github.actor)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Provision infrastructure
+        run: |
+          az login --service-principal -u ${{ secrets.AZURE_USER}} -p ${{ secrets.AZURE_PASSWORD}} --tenant ${{ secrets.AZURE_TENANT_ID}}
+          pip install -r requirements.txt
+          echo ${{secrets.ANSIVAULT_KEY}} > passphrase.txt
+          ansible-vault decrypt /home/runner/work/TDEI-infra-as-code/TDEI-infra-as-code/infra/keyvault/config/${{github.event.inputs.config-to-use}}/secrets.json.enc \
+          --output /home/runner/work/TDEI-infra-as-code/TDEI-infra-as-code/infra/keyvault/config/${{github.event.inputs.config-to-use}}/secrets.json \
+          --vault-password-file passphrase.txt
+          python create-env.py -e ${{ github.event.inputs.environment-name }} -c ${{ github.event.inputs.config-to-use }} -l ${{ github.event.inputs.region }} -s ${{ secrets.AZURE_SUBSCRIPTION}}
+          rm passphrase.txt
+
