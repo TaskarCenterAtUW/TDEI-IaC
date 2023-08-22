@@ -40,8 +40,8 @@ jobs:
           az login --service-principal -u ${{ secrets.AZURE_USER}} -p ${{ secrets.AZURE_PASSWORD}} --tenant ${{ secrets.AZURE_TENANT_ID}}
           pip install -r requirements.txt
           echo ${{secrets.ANSIVAULT_KEY}} > passphrase.txt
-          ansible-vault decrypt /home/runner/work/TDEI-infra-as-code/TDEI-infra-as-code/infra/keyvault/config/${{github.event.inputs.config-to-use}}/secrets.json.enc \
-          --output /home/runner/work/TDEI-infra-as-code/TDEI-infra-as-code/infra/keyvault/config/${{github.event.inputs.config-to-use}}/secrets.json \
+          ansible-vault decrypt /home/runner/work/TDEI-IaC/TDEI-IaC/infra/keyvault/config/${{github.event.inputs.config-to-use}}/secrets.json.enc \
+          --output /home/runner/work/TDEI-IaC/TDEI-IaC/infra/keyvault/config/${{github.event.inputs.config-to-use}}/secrets.json \
           --vault-password-file passphrase.txt
           python create-env.py -e ${{ github.event.inputs.environment-name }} -c ${{ github.event.inputs.config-to-use }} -l ${{ github.event.inputs.region }} -s ${{ secrets.AZURE_SUBSCRIPTION}}
           rm passphrase.txt
