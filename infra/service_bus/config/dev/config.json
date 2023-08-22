@@ -206,6 +206,47 @@
                     "default_message_time_to_live": "P14D"
                 }
             }
+        },
+        {
+            "name": "temp-upload",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "upload-validation-processor",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        ,
+        {
+            "name": "temp-validation",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "temp-validation-result",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
         }
     ],
     "tags": {
