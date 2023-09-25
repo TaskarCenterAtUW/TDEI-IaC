@@ -190,6 +190,7 @@
             "DATASVC_TOPIC": "gtfs-pathways-data-service",
             "VALIDATION_SUBSCRIPTION": "gtfs-pathways-validation-result",
             "VALIDATION_TOPIC": "gtfs-pathways-validation",
+            "UPLOAD_TOPIC": "gtfs-pathways-upload",
             "STATION_URL" : "https://{tdei-usermanagement-ts-hostname}/api/v1/station"
         },
         "diagnostic-settings": {
@@ -222,7 +223,8 @@
             "SSL": "TRUE",
             "DATASVC_TOPIC": "gtfs-flex-data-service",
             "VALIDATION_SUBSCRIPTION": "gtfs-flex-validation-result",
-            "VALIDATION_TOPIC": "gtfs-flex-validation"
+            "VALIDATION_TOPIC": "gtfs-flex-validation",
+            "UPLOAD_TOPIC": "gtfs-flex-upload"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -251,7 +253,8 @@
             "SSL": "TRUE",
             "DATASVC_TOPIC": "osw-data-service",
             "VALIDATION_SUBSCRIPTION": "osw-validation-result",
-            "VALIDATION_TOPIC": "osw-validation"
+            "VALIDATION_TOPIC": "osw-validation",
+            "UPLOAD_TOPIC": "osw-upload"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
