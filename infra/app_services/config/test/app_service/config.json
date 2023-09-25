@@ -317,35 +317,5 @@
             "category":"AppServiceConsoleLogs",
             "enabled": true
         }
-    },
-    "tdei-file-service" : {
-        "app-service-plan": "TDEI-1",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/file-service:test-latest",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "25Q63O57UIAahRmqGxLq=sWkWtLHHtIO",
-            "DOCKER_REGISTRY_SERVER_URL": "https://tdeidocker.azurecr.io",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "tdeidocker",
-            "CLOUD_AZURE_SERVICE_BUS_CONNECTION_STRING" : "{service-bus-connection-string}",
-            "CLOUD_AZURE_STORAGE_BLOB_CONNECTION_STRING" : "{storage-connection-string}",
-            "CLOUD_AZURE_STORAGE_BLOB_ENDPOINT" : "https://tdeisamplestorage.blob.core.windows.net/",
-            "GTFS_FLEX_CONTAINER_NAME" : "gtfsflex",
-            "GTFS_FLEX_UPLOAD_ALLOWED_EXTENSIONS" : "zip",
-            "GTFS_FLEX_UPLOAD_TOPIC_NAME" : "gtfs-flex-upload",
-            "GTFS_PATHWAYS_CONTAINER_NAME" : "gtfspathways",
-            "GTFS_PATHWAYS_UPLOAD_ALLOWED_EXTENSIONS" : "zip",
-            "GTFS_PATHWAYS_UPLOAD_TOPIC_NAME" : "gtfs-pathways-upload",
-            "OSW_CONTAINER_NAME" : "osw",
-            "OSW_UPLOAD_ALLOWED_EXTENSIONS" : "zip",
-            "OSW_UPLOAD_TOPIC_NAME": "osw-upload"
-
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "file-service-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
     }
 }
