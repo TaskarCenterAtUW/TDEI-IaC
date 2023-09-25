@@ -190,6 +190,7 @@
             "DATASVC_TOPIC": "gtfs-pathways-data-service",
             "VALIDATION_SUBSCRIPTION": "gtfs-pathways-validation-result",
             "VALIDATION_TOPIC": "gtfs-pathways-validation",
+            "UPLOAD_TOPIC": "gtfs-pathways-upload",
             "STATION_URL" : "https://{tdei-usermanagement-ts-hostname}/api/v1/station"
         },
         "diagnostic-settings": {
@@ -222,7 +223,8 @@
             "SSL": "TRUE",
             "DATASVC_TOPIC": "gtfs-flex-data-service",
             "VALIDATION_SUBSCRIPTION": "gtfs-flex-validation-result",
-            "VALIDATION_TOPIC": "gtfs-flex-validation"
+            "VALIDATION_TOPIC": "gtfs-flex-validation",
+            "UPLOAD_TOPIC": "gtfs-flex-upload"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -251,7 +253,8 @@
             "SSL": "TRUE",
             "DATASVC_TOPIC": "osw-data-service",
             "VALIDATION_SUBSCRIPTION": "osw-validation-result",
-            "VALIDATION_TOPIC": "osw-validation"
+            "VALIDATION_TOPIC": "osw-validation",
+            "UPLOAD_TOPIC": "osw-upload"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -311,36 +314,6 @@
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
             "name": "usermanagement-ts-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-file-service" : {
-        "app-service-plan": "TDEI-1",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/file-service:dev-latest",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "CLOUD_AZURE_SERVICE_BUS_CONNECTION_STRING" : "{service-bus-connection-string}",
-            "CLOUD_AZURE_STORAGE_BLOB_CONNECTION_STRING" : "{storage-connection-string}",
-            "CLOUD_AZURE_STORAGE_BLOB_ENDPOINT" : "https://tdeisamplestorage.blob.core.windows.net/",
-            "GTFS_FLEX_CONTAINER_NAME" : "gtfsflex",
-            "GTFS_FLEX_UPLOAD_ALLOWED_EXTENSIONS" : "zip",
-            "GTFS_FLEX_UPLOAD_TOPIC_NAME" : "gtfs-flex-upload",
-            "GTFS_PATHWAYS_CONTAINER_NAME" : "gtfspathways",
-            "GTFS_PATHWAYS_UPLOAD_ALLOWED_EXTENSIONS" : "zip",
-            "GTFS_PATHWAYS_UPLOAD_TOPIC_NAME" : "gtfs-pathways-upload",
-            "OSW_CONTAINER_NAME" : "osw",
-            "OSW_UPLOAD_ALLOWED_EXTENSIONS" : "zip",
-            "OSW_UPLOAD_TOPIC_NAME": "osw-upload"
-
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "file-service-console.logs",
             "category":"AppServiceConsoleLogs",
             "enabled": true
         }
