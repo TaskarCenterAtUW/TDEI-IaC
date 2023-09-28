@@ -19,7 +19,7 @@
    - Region: West US 3
    - Operating System: Select "Linux."
    - Hosting: Consumption
-![img_1.png](img_1.png)
+![img.png](img.png)
 4. **Configure Storage**
    - Select Storage account "tdeisamplestorage"
 5. **Networking**
