@@ -7,10 +7,10 @@
         "name": "PerGB2018"
       }
     },
-    "tags": {"env": "dev"}
+    "tags": {"env": "stage"}
   },
   "appInsights": {
     "name": "tdeiAppInsights",
-    "tags": {"env": "dev"}
+    "tags": {"env": "stage"}
   }
 }
