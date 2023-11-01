@@ -16,9 +16,11 @@ class LoggerDB:
         config_file = os.path.join(current_dir, "config", config_name, "config.json")
         config_file = open(config_file)
         config = json.load(config_file)
+
         # Add the location information
-        #config['cosmosdb']['createUpdateParameters']['properties']['locations'][0]['locationName'] = location
+        config['cosmosdb']['createUpdateParameters']['properties']['locations'][0]['locationName'] = location
         config['cosmosdb']['createUpdateParameters']['location'] = location
+
         # Account is created with env suffix
         account_name = config['cosmosdb']['accountName']+"-"+environment
 
