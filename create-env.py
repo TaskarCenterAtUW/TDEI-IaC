@@ -66,12 +66,12 @@ if __name__ == "__main__":
         {rg_result.location} region"
         )
 
-        #Create Keyvault to store credentials and application parameters needed by AppServices
+        # Create Keyvault to store credentials and application parameters needed by AppServices
         KeyVault.initialize(credential, RESOURCE_GROUP_NAME, environment)
 
         # Set secrets in KeyVault
         KeyVault.store_secrets(config_name=config)
-
+        
         #Provision PostgreSQL Flexible Server
         postgresql_service = PostgreSQLService(
             credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
@@ -99,7 +99,6 @@ if __name__ == "__main__":
             location=location
         )
         print("service bus: provisioned")
-
 
         # Provision Logger DB - CosmosDB for MongoDB
         loggerDB = LoggerDB(
