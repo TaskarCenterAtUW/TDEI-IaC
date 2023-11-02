@@ -160,7 +160,7 @@
             "enabled": true
         }
     },
-    "tdei-pathways-datasvc-ts" : {
+    "tdei-pathways-datasvc" : {
         "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/data-service:stage-latest",
         "health-check-path": "/health/ping",
@@ -190,7 +190,7 @@
             "enabled": true
         }
     },
-    "tdei-flex-datasvc-ts": {
+    "tdei-flex-datasvc": {
         "app-service-plan": "TDEI-3",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/flex-datasvc-ts:stage-latest",
         "health-check-path": "/health/ping",
@@ -223,7 +223,7 @@
             "enabled": true
         }
     },
-    "tdei-osw-datasvc-ts" : {
+    "tdei-osw-datasvc" : {
         "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-datasvc-ts:stage-latest",
         "health-check-path": "/health/ping",
