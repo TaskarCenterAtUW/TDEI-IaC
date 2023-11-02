@@ -317,5 +317,22 @@
             "category":"AppServiceConsoleLogs",
             "enabled": true
         }
+    },
+    "tdei-api-gateway-spec": {
+        "app-service-plan": "TDEI-4",
+        "linux-fx-version": "DOCKER|https://index.docker.io/v1/swaggerapi/swagger-ui:latest",
+        "application-parameters": {
+            "DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io/v1",
+            "QUERY_CONFIG_ENABLED": true,
+            "URL": "https://raw.githubusercontent.com/TaskarCenterAtUW/TDEI-ExternalAPIs/gs-api-gateway-implementation/tdei-api-gateway.json",
+            "WEBSITE_HEALTHCHECK_MAXPINGFAILURES": 10,
+            "WEBSITES_ENABLE_APP_SERVICE_STORAGE" : false
+        },
+        "diagnostic-settings": {
+            "workspace_id": "{tdei-loganalytics-workspace-id}",
+            "name": "api-gateway-spec-console.logs",
+            "category":"AppServiceConsoleLogs",
+            "enabled": true
+        }
     }
 }
