@@ -7,7 +7,7 @@
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
             "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "tdeidocker"
+            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -51,18 +51,8 @@
             "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
             "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
             "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "GTFS_FLEX_DATA_URL": "https://{tdei-flex-datasvc-ts-hostname}/api/v1/gtfsflex",
-            "GTFS_FLEX_UPLOAD_URL" : "https://{tdei-file-service-hostname}/api/gtfsflex/v1/uploadFile",
-            "GTFS_PATHWAYS_DATA_URL" : "https://{tdei-pathways-datasvc-ts-hostname}/api/v1/gtfspathways",
-            "GTFS_PATHWAYS_UPLOAD_URL" : "https://{tdei-file-service-hostname}/api/gtfspathways/v1/uploadFile",
-            "MANAGEMENT_SVC_LOGGER_URL" : "https://{tdei-logger-hostname}/status",
-            "MANAGEMENT_SVC_ORG_URL" : "https://{tdei-usermanagement-ts-hostname}/api/v1/organization",
-            "MANAGEMENT_SVC_SERVICE_URL" : "https://{tdei-usermanagement-ts-hostname}/api/v1/service",
-            "MANAGEMENT_SVC_STATION_URL" : "https://{tdei-usermanagement-ts-hostname}/api/v1/station",
-            "OSW_DATA_URL" : "https://{tdei-osw-datasvc-ts-hostname}/api/v1/osw",
-            "OSW_UPLOAD_URL" : "https://{tdei-file-service-hostname}/api/osw/v1/uploadFile",
-            "SPRING_PROFILES_ACTIVE" : "dev"
+            "WEBSITE_HEALTHCHECK_MAXPINGFAILURES": 10,
+            "WEBSITES_ENABLE_APP_SERVICE_STORAGE": false
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
