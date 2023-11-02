@@ -74,7 +74,7 @@
             "STORAGECONNECTION": "{storage-connection-string}",
             "PORT": "8080",
             "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "SERVICE_URL": "https://{tdei-usermanagement-ts-hostname}/api/v1/service",
+            "SERVICE_URL": "https://{tdei-usermanagement-hostname}/api/v1/service",
             "POSTGRES_USER": "{postgresql-administrator-login}",
             "POSTGRES_HOST": "{tdei-postgresql-hostname}",
             "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
@@ -172,7 +172,7 @@
             "QUEUECONNECTION":"{service-bus-connection-string}",
             "STORAGECONNECTION": "{storage-connection-string}",
             "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "SERVICE_URL": "https://{tdei-usermanagement-ts-hostname}/api/v1/service",
+            "SERVICE_URL": "https://{tdei-usermanagement-hostname}/api/v1/service",
             "POSTGRES_USER": "{postgresql-administrator-login}",
             "POSTGRES_HOST": "{tdei-postgresql-hostname}",
             "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
@@ -181,7 +181,7 @@
             "VALIDATION_SUBSCRIPTION": "gtfs-pathways-validation-result",
             "VALIDATION_TOPIC": "gtfs-pathways-validation",
             "UPLOAD_TOPIC": "gtfs-pathways-upload",
-            "STATION_URL" : "https://{tdei-usermanagement-ts-hostname}/api/v1/station"
+            "STATION_URL" : "https://{tdei-usermanagement-hostname}/api/v1/station"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -205,7 +205,7 @@
             "EVENT_BUS_CONNECTION" : "{service-bus-connection-string}",
             "QUEUECONNECTION": "{service-bus-connection-string}",
             "STORAGECONNECTION": "{storage-connection-string}",
-            "SERVICE_URL": "https://{tdei-usermanagement-ts-hostname}/api/v1/service",
+            "SERVICE_URL": "https://{tdei-usermanagement-hostname}/api/v1/service",
             "POSTGRES_USER": "{postgresql-administrator-login}",
             "POSTGRES_HOST": "{tdei-postgresql-hostname}",
             "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
@@ -266,7 +266,7 @@
             "STORAGECONNECTION": "{storage-connection-string}",
             "AUTH_SERVICE_BASE_URL" : "https://{tdei-auth-n-z-hostname}/api/v1",
             "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "SERVICE_URL": "https://{tdei-usermanagement-ts-hostname}/api/v1/service",
+            "SERVICE_URL": "https://{tdei-usermanagement-hostname}/api/v1/service",
             "POSTGRES_USER": "{postgresql-administrator-login}",
             "POSTGRES_HOST": "{tdei-postgresql-hostname}",
             "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
@@ -280,7 +280,7 @@
             "enabled": true
         }
     },
-    "tdei-usermanagement-ts" : {
+    "tdei-usermanagement" : {
         "app-service-plan": "TDEI-5",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/usermanagement-ts:latest",
         "health-check-path": "/health/ping",
