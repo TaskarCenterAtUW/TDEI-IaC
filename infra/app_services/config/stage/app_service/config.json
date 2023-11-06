@@ -26,14 +26,14 @@
             "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
             "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
             "KEYCLOAK_AUTH_SERVER_URL": "https://{tdei-keycloak-hostname}",
-            "KEYCLOAK_CLIENT_ENDPOINTS_TOKEN_URL" : "https://{tdei-keycloak-hostname}/realms/tdei/protocol/openid-connect/token",
-            "KEYCLOAK_CLIENT_ENDPOINTS_USER_URL" : "https://{tdei-keycloak-hostname}/realms/tdei/protocol/openid-connect/userinfo",
+            "KEYCLOAK_CLIENT_ENDPOINTS_BASE_URL" : "https://{tdei-keycloak-hostname}/realms/tdei/protocol/openid-connect",
             "KEYCLOAK_CREDENTIALS_SECRET": "i09SUsZLmoKYWi2GJw46bv06bc7T1B4g",
             "SPRING_APPLICATION_SECRET" : "asdfSFS34wfsdfsdfSDSD32dfsddDDerQSNCK34SOWEK5354fdgdf4",
             "SPRING_APPLICATION_SECRET_TTL": "60",
             "SPRING_DATASOURCE_USERNAME" : "{postgresql-administrator-login}",
             "SPRING_DATASOURCE_PASSWORD" : "{postgresql-administrator-password}",
-            "SPRING_DATASOURCE_URL" : "jdbc:postgresql://{tdei-postgresql-hostname}:5432/tdei"
+            "SPRING_DATASOURCE_URL" : "jdbc:postgresql://{tdei-postgresql-hostname}:5432/tdei",
+            "SPRING_PROFILES_ACTIVE": "stage"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
