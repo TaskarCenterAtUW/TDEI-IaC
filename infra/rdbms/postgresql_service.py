@@ -1,6 +1,6 @@
 import json
 import os
-from azure.mgmt.web.models import NameValuePair
+#from azure.mgmt.web.models import NameValuePair
 from azure.mgmt.rdbms.postgresql_flexibleservers import PostgreSQLManagementClient
 from azure.mgmt.rdbms.postgresql_flexibleservers.models import Server, Sku, Storage
 from infra.keyvault.keyvault import KeyVault

@@ -3,11 +3,14 @@
         "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/keycloak:dev-latest",
         "health-check-path": "/health/ping",
+        "appCommandLine": "--http-port=8080 --hostname=tdei-keycloak-dev.azurewebsites.net --hostname-strict-backchannel=false --health-enabled=true",
         "health-check-http-status": 200,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
             "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}"
+            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+            "PORT": 8080,
+            "WEBSITES_PORT": 8080
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
