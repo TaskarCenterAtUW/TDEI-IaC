@@ -58,7 +58,7 @@ class PostgreSQLService:
             location=location
         )
         for database in postgresql_config['database']:
-            database_result = self.postgres_client.databases.create(
+            database_result = self.postgres_client.databases.begin_create(
                 self.resource_group,
                 server_name,
                 database,
