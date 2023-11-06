@@ -1,8 +1,7 @@
 import json
 import os
-#from azure.mgmt.web.models import NameValuePair
 from azure.mgmt.rdbms.postgresql_flexibleservers import PostgreSQLManagementClient
-from azure.mgmt.rdbms.postgresql_flexibleservers.models import Server, Sku, Storage
+from azure.mgmt.rdbms.postgresql_flexibleservers.models import Server, Sku, Storage, Database
 from infra.keyvault.keyvault import KeyVault
 
 class PostgreSQLService:
@@ -51,3 +50,18 @@ class PostgreSQLService:
         KeyVault.setSecret(postgresql_config['server_name'] + '-hostname', postgresql_result.fully_qualified_domain_name)
         print(
             f"Completed - '{postgresql_result.fully_qualified_domain_name}'")
+
+        # Provision Databases
+        database_parameters = Database(
+            charset="UTF8",
+            collation="en_US.utf8",
+            location=location
+        )
+        for database in postgresql_config['database']:
+            database_result = self.postgres_client.databases.create(
+                self.resource_group,
+                server_name,
+                database,
+                parameters=database_parameters)
+
+            print(f"Database '{database}' created successfully.")
