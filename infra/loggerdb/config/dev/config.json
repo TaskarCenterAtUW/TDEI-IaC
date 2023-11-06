@@ -1,6 +1,6 @@
 {
     "cosmosdb": {
-        "name": "tdei-logger",
+        "name": "tdei-logs",
         "accountName": "tdei-logger",
         "createUpdateParameters": {
             "kind":"MongoDB",
@@ -10,6 +10,6 @@
                 "locations": [{"failoverPriority": 0, "isZoneRedundant":false}]
             }
         },
-        "collectionName": "tdei-records"
+        "collectionName": "records"
     }
 }

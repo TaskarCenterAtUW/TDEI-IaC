@@ -103,6 +103,7 @@
             "MONGODBNAME" : "tdei-logs",
             "MONGORECORDSCOLLECTION" : "records",
             "QUEUECONNECTION":"{service-bus-connection-string}",
+            "MONGOURL": "{loggerdb-connection-string}",
             "TOPICS" : "gtfs-flex-upload,gtfs-flex-validation,osw-upload,osw-validation,osw-data-service,gtfs-flex-data-service,gtfs-pathways-upload,gtfs-pathways-validation,gtfs-pathways-data-service"
         },
         "diagnostic-settings": {

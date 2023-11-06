@@ -102,6 +102,7 @@
             "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
             "MONGODBNAME" : "tdei-logs",
             "MONGORECORDSCOLLECTION" : "records",
+            "MONGOURL": "{loggerdb-connection-string}",
             "QUEUECONNECTION":"{service-bus-connection-string}",
             "TOPICS" : "gtfs-flex-upload,gtfs-flex-validation,osw-upload,osw-validation,osw-data-service,gtfs-flex-data-service,gtfs-pathways-upload,gtfs-pathways-validation,gtfs-pathways-data-service"
         },
