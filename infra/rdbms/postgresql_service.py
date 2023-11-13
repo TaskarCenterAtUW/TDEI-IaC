@@ -54,8 +54,7 @@ class PostgreSQLService:
         # Provision Databases
         database_parameters = Database(
             charset="UTF8",
-            collation="en_US.utf8",
-            location=location
+            collation="en_US.utf8"
         )
         for database in postgresql_config['database']:
             database_result = self.postgres_client.databases.begin_create(
