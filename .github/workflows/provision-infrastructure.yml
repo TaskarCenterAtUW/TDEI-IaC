@@ -39,7 +39,6 @@ jobs:
         run: |
           az login --service-principal -u ${{ secrets.AZURE_USER}} -p ${{ secrets.AZURE_PASSWORD}} --tenant ${{ secrets.AZURE_TENANT_ID}}
           pip install -r requirements.txt
-          echo ${{secrets.ANSIVAULT_KEY}} | sed 's/./& /g'
           echo ${{secrets.ANSIVAULT_KEY}} > passphrase.txt
           ansible-vault decrypt /home/runner/work/TDEI-IaC/TDEI-IaC/infra/keyvault/config/${{github.event.inputs.config-to-use}}/secrets.json.enc \
           --output /home/runner/work/TDEI-IaC/TDEI-IaC/infra/keyvault/config/${{github.event.inputs.config-to-use}}/secrets.json \
