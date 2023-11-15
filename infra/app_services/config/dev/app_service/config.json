@@ -2,7 +2,7 @@
     "tdei-keycloak": {
         "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/keycloak:dev-latest",
-        "health-check-path": "/health/ping",
+        "health-check-path": "/health",
         "appCommandLine": "--http-port=8080 --hostname=tdei-keycloak-dev.azurewebsites.net --hostname-strict-backchannel=false --health-enabled=true",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -96,7 +96,7 @@
     },
     "tdei-logger": {
         "app-service-plan": "TDEI-1",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/tdei-logger:dev-latest",
+        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/logger:dev-latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -314,9 +314,7 @@
     },
     "tdei-api-gateway-spec": {
         "app-service-plan": "TDEI-4",
-        "linux-fx-version": "DOCKER|https://index.docker.io/v1/swaggerapi/swagger-ui:latest",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
+        "linux-fx-version": "DOCKER|swaggerapi/swagger-ui:latest",
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io/v1",
             "QUERY_CONFIG_ENABLED": true,

@@ -51,6 +51,9 @@ class PostgreSQLService:
         print(
             f"Completed - '{postgresql_result.fully_qualified_domain_name}'")
 
+        # TODO: Allow public access from any Azure service within Azure to this server
+        # TODO: Add extension POSTGIS to the database server
+
         # Provision Databases
         database_parameters = Database(
             charset="UTF8",

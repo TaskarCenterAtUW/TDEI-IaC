@@ -129,7 +129,9 @@ if __name__ == "__main__":
             environment=environment,
             location=location
         )
-        
+
+        # TODO: Run DB scripts for keycloak and user management and OSW, Pathways and GTFS too?
+
         # Provision AppServices
         app_service = AppService(web_client, RESOURCE_GROUP_NAME)
         app_service.provision(

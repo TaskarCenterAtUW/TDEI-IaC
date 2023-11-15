@@ -41,8 +41,16 @@ class AppService:
                 f"Completed - {web_app_result.default_host_name}. Configuring Health Check for it")
             KeyVault.setSecret(microservice + '-hostname', web_app_result.default_host_name)
             site_config = self.web_client.web_apps.get_configuration(self.resource_group, microservice_name)
-            site_config.health_check_path = microservices_config[microservice]['health-check-path']
-            site_config.health_check_http_status = microservices_config[microservice]['health-check-http-status']
+
+            # Not all app services have health check. Example: API-gateway-spec
+            if "health-check-path" in microservices_config[microservice]:
+                site_config.health_check_path = microservices_config[microservice]['health-check-path']
+                site_config.health_check_http_status = microservices_config[microservice]['health-check-http-status']
+
+            # Keycloak service requires a startup command line
+            if "appCommandLine" in microservices_config[microservice]:
+                site_config.appCommandLine = microservices_config[microservice]['appCommandLine']
+
             self.web_client.web_apps.update_configuration(self.resource_group, microservice_name, site_config)
             print("Completed Configuring Health Check")
 
