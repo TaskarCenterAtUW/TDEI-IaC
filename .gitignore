@@ -4,6 +4,7 @@
 .idea
 .idea/*
 .rakesh
+.Exptest.py
 infra/keyvault/config/dev/secrets.json
 infra/keyvault/config/test/secrets.json
 infra/keyvault/config/stage/secrets.json

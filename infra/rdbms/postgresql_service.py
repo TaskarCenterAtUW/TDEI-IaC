@@ -45,14 +45,26 @@ class PostgreSQLService:
             self.resource_group,
             server_name,
             server_params,
-            
         ).result()
         KeyVault.setSecret(postgresql_config['server_name'] + '-hostname', postgresql_result.fully_qualified_domain_name)
-        print(
-            f"Completed - '{postgresql_result.fully_qualified_domain_name}'")
+        print(f"Completed - '{postgresql_result.fully_qualified_domain_name}'")
 
-        # TODO: Allow public access from any Azure service within Azure to this server
-        # TODO: Add extension POSTGIS to the database server
+        # Allow public access from any Azure service within Azure to this server
+        self.postgres_client.firewall_rules.begin_create_or_update(
+            resource_group_name=self.resource_group,
+            server_name=server_name,
+            firewall_rule_name="AllowPublicAccess",
+            parameters={"properties": {"endIpAddress": "0.0.0.0", "startIpAddress": "0.0.0.0"}},
+            # Change the above start and end IP Address to restrict from public access
+        )
+
+        # Enable POSTGIS azure.extension in the flexible server
+        self.postgres_client.configurations.begin_update(
+            resource_group_name=self.resource_group,
+            server_name=server_name,
+            configuration_name="azure.extensions",
+            parameters={"properties": {"source": "user-override", "value": "POSTGIS"}},
+        )
 
         # Provision Databases
         database_parameters = Database(
