@@ -14,10 +14,13 @@
       `pip install -r requirements.txt`
    4. Do an AZ login:  
    `az login --service-principal -u <userid> -p <password> --tenant <tenant>`  
+   5. Decode the _secrets.json.enc_ by using the following command:
+   `ansible-vault decrypt secrets.json.enc --output secrets.json`  
+   The above will ask for a password. This is available in KeyVault secret: "ANSIVAULT_KEY"
 
-   5. Issue the following command:  
-   `py create-env.py -e <environmentName> -c <configToUse> -l <location>`  
-    Eg: `py create-env.py -e prod -c prod -l eastus`  
+   7. Issue the following command:  
+   `py create-env.py -e <environmentName> -c <configToUse> -l <location> -s <subscription_id>`  
+    Eg: `py create-env.py -e prod -c prod -l eastus -s xyz-zas-d`  
 
 
 

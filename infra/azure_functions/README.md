@@ -1,4 +1,7 @@
 ### Steps for creating azure function resources for housekeeping
+
+**Note:** These are not automatically provisioned by IaC yet. <To-do>
+
 1. **Sign In to Azure Portal**
    
    - Open your web browser and navigate to [https://portal.azure.com](https://portal.azure.com).

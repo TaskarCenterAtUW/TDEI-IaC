@@ -7,6 +7,8 @@ Maintaining Infrastructure as Code
 `.\.venv\Scripts\python.exe -m pip install --upgrade pip`  
 `pip install -r requirements.txt`
 
+### How to run the code locally
+Instructions are provided in the [Documentaion](Documentation/Instructions.md) in the section _to provision PROD environment_
 
 ### Directory structure
 1. Each azure cloud component has its own folder under `infra`

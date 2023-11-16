@@ -28,3 +28,6 @@ Make the changes to the _createUpdateParameters_ in the `config.json` and save
 1. Set the environment.
 2. From the root folder, Run `py create-env.py -e <environment> -c <ref_env> -l <location>`
 3. The script "upserts" values. So, only changes are updated.
+
+### **NOTE**
+The _mongodb_ and _collection_ name given here in the config should match the names in the app service config
