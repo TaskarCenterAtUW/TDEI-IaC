@@ -266,19 +266,10 @@
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION":"{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "AUTH_SERVICE_BASE_URL" : "https://{tdei-auth-n-z-hostname}/api/v1",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "SERVICE_URL": "https://{tdei-usermanagement-hostname}/api/v1/service",
-            "POSTGRES_USER": "{postgresql-administrator-login}",
-            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
-            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "POSTGRES_PORT": "5432",
-            "NODE_ENV" : "development"
+            "DOCKER_REGISTRY_SERVER_PASSWORD": "25Q63O57UIAahRmqGxLq=sWkWtLHHtIO",
+            "DOCKER_REGISTRY_SERVER_URL": "https://tdeidocker.azurecr.io",
+            "DOCKER_REGISTRY_SERVER_USERNAME": "tdeidocker",
+            "REACT_APP_URL": "https://{tdei-usermanagement-ts-hostname}/api/v1"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
