@@ -308,6 +308,46 @@
                     }
                 }
             ]
+        },
+        {
+            "name": "osw-confidence-requested",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "osw-confidence-requested-sub",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "osw-confidence-calculated",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "osw-confidence-calculated-sub",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
         }
     ],
     "tags": {
