@@ -33,7 +33,8 @@ class AppService:
                     "location": location,
                     "server_farm_id": app_service_plan.id,
                     "site_config": {
-                        "linux_fx_version": microservices_config[microservice]['linux-fx-version']
+                        "linux_fx_version": microservices_config[microservice]['linux-fx-version'],
+                        "always_on": microservices_config[microservice]['always-on']
                     },
                 }
             ).result()

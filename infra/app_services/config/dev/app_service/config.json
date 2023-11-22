@@ -2,6 +2,7 @@
     "tdei-keycloak": {
         "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/keycloak:dev-latest",
+        "always-on": false,
         "health-check-path": "/health",
         "appCommandLine": "--http-port=8080 --hostname=tdei-keycloak-dev.azurewebsites.net --hostname-strict-backchannel=false --health-enabled=true",
         "health-check-http-status": 200,
@@ -22,6 +23,7 @@
     "tdei-auth-n-z": {
         "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/auth-n-z:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -48,6 +50,7 @@
     "tdei-gateway": {
         "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gateway:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -67,6 +70,7 @@
     "tdei-osw-validation": {
         "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-validation:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -94,6 +98,7 @@
     "tdei-logger": {
         "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/logger:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -116,6 +121,7 @@
     "tdei-gtfs-pathways-validation": {
         "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-pathways-validation:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -143,6 +149,7 @@
     "tdei-gtfs-flex-validation" : {
         "app-service-plan": "TDEI-3",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-flex-validation:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -168,6 +175,7 @@
     "tdei-pathways-datasvc" : {
         "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/data-service:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -199,6 +207,7 @@
     "tdei-flex-datasvc": {
         "app-service-plan": "TDEI-3",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/flex-datasvc-ts:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -232,6 +241,7 @@
     "tdei-osw-datasvc" : {
         "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-datasvc-ts:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -266,6 +276,7 @@
     "tdei-usermanagement-front-end" : {
         "app-service-plan": "TDEI-5",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/user-management-front-end:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -284,6 +295,7 @@
     "tdei-usermanagement" : {
         "app-service-plan": "TDEI-5",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/usermanagement-ts:dev-latest",
+        "always-on": false,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -310,10 +322,10 @@
             "enabled": true
         }
     },
-
     "tdei-api-gateway-spec": {
         "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|swaggerapi/swagger-ui:latest",
+        "always-on": false,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io/v1",
             "QUERY_CONFIG_ENABLED": true,
@@ -331,6 +343,7 @@
     "tdei-osw-confidence-metric": {
         "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-confidence-metric:dev-latest",
+        "always-on": false,
         "health-check-path": "/health",
         "health-check-http-status": 200,
         "application-parameters": {
