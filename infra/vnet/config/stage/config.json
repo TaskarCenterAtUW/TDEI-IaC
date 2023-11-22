@@ -1,0 +1,25 @@
+{
+  "vnet_name" : "TDEI-STAGE-VNET",
+  "properties": {
+    "addressSpace": {"addressPrefixes": ["10.10.0.0/16"]},
+    "subnets":
+    [
+      {
+        "name": "tdei-appservice-subnet",
+        "properties": {"addressPrefix": "10.10.0.0/26"}
+      },
+      {
+        "name": "tdei-gateway-subnet",
+        "properties": {"addressPrefix": "10.10.0.64/26"}
+      },
+      {
+        "name": "tdei-auth-subnet",
+        "properties": {"addressPrefix": "10.10.0.128/26"}
+      },
+      {
+        "name": "tdei-usermanagement-subnet",
+        "properties": {"addressPrefix": "10.10.0.192/26"}
+      }
+    ]
+  }
+}

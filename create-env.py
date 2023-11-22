@@ -5,7 +5,7 @@ from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.web import WebSiteManagementClient
 from azure.identity import DefaultAzureCredential
 from infra import StorageAccount, AppService, AppServiceParameters, AppServicePlan, PostgreSQLService, KeyVault
-from infra import LoggerDB, ServiceBus, LogAnalytics, DiagnosticSettings
+from infra import LoggerDB, ServiceBus, LogAnalytics, DiagnosticSettings, VirtualNetworks
 
 
 def show_help():
@@ -71,7 +71,15 @@ if __name__ == "__main__":
 
         # Set secrets in KeyVault
         KeyVault.store_secrets(config_name=config)
-        
+
+        # Provision Virtual Network
+        virtual_network = VirtualNetworks(
+            subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME, credential=credential)
+        virtual_network.provision(
+            config_name=config,
+            location=location
+        )
+
         #Provision PostgreSQL Flexible Server
         postgresql_service = PostgreSQLService(
             credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
@@ -151,7 +159,6 @@ if __name__ == "__main__":
         print("Enabling Diagnostic Settings for App Services ")
         diagSettings = DiagnosticSettings(credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
         diagSettings.enable(config_name=config, environment=environment)
-
 
     else:
         show_help()
