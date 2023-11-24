@@ -32,6 +32,7 @@ class AppService:
                 {
                     "location": location,
                     "server_farm_id": app_service_plan.id,
+                    "vnetRouteAllEnabled": microservices_config[microservice]['vnet-enabled'],
                     "site_config": {
                         "linux_fx_version": microservices_config[microservice]['linux-fx-version'],
                         "always_on": microservices_config[microservice]['always-on']
