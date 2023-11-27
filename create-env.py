@@ -43,6 +43,11 @@ if __name__ == "__main__":
         print(str(err))
         exit(1)
 
+    if environment.islower() is False:
+        print("Please enter the environment name in lower case letters")
+        # This env is used for provisioning postgres instance, that cannot take Upper letters
+        quit()
+
     if (environment and config and location):
         print("Acquiring azure credential object..")
         # Acquire a credential object using CLI-based authentication.
@@ -77,7 +82,8 @@ if __name__ == "__main__":
             subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME, credential=credential)
         virtual_network.provision(
             config_name=config,
-            location=location
+            location=location,
+            environment=environment
         )
 
         #Provision PostgreSQL Flexible Server
@@ -141,7 +147,7 @@ if __name__ == "__main__":
         # TODO: Run DB scripts for keycloak and user management and OSW, Pathways and GTFS too?
 
         # Provision AppServices
-        app_service = AppService(web_client, RESOURCE_GROUP_NAME)
+        app_service = AppService(web_client, RESOURCE_GROUP_NAME, subscription_id)
         app_service.provision(
             config_name=config,
             environment=environment,

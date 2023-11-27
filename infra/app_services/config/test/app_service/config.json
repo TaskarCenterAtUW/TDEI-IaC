@@ -2,9 +2,11 @@
     "tdei-keycloak": {
         "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/keycloak:stage-latest",
-        "always-on": true, "vnet-enabled":true,
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "health-check-path": "/health",
-        "appCommandLine": "--http-port=8080 --hostname=tdei-keycloak-stage.azurewebsites.net --hostname-strict-backchannel=false --health-enabled=true",
+        "appCommandLine": "--http-port=8080 --hostname=tdei-keycloak-test.azurewebsites.net --hostname-strict-backchannel=false --health-enabled=true",
         "health-check-http-status": 200,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
@@ -23,7 +25,9 @@
     "tdei-auth-n-z": {
         "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/auth-n-z:stage-latest",
-        "always-on": true, "vnet-enabled":true,
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": "Disabled",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {

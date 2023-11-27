@@ -6,7 +6,6 @@ https://github.com/Azure-Samples/azure-samples-python-management/tree/main/sampl
 
 ### TODO:
 1. Define configurations for `Test` and `prod`
-2. For now, copied "dev" config to "test" and "prod"
 
 ### Instructions
 The provisioning of `app_service_plans` and `app_services` happens in the main `create-env.py` script.

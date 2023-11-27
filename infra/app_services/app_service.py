@@ -3,9 +3,10 @@ import os
 from infra.keyvault.keyvault import KeyVault
 
 class AppService:
-    def __init__(self, web_client, resource_group):
+    def __init__(self, web_client, resource_group, subscription_id):
         self.web_client = web_client
         self.resource_group = resource_group
+        self.subscription_id = subscription_id
 
     def provision(self, config_name, location, environment):
         # Load microservices config.json
@@ -25,6 +26,17 @@ class AppService:
                 microservices_config[microservice]['app-service-plan'] + "-" + environment 
             )
 
+            if microservices_config[microservice]['subnet'] is None:
+                subnet = None
+            else:
+                vnet = f"/subscriptions/{self.subscription_id}/resourceGroups/{self.resource_group}/providers/Microsoft.Network/virtualNetworks/TDEI-" + environment + "-VNET/subnets/"
+                subnet = vnet + microservices_config[microservice]['app-service-plan'] + "-subnet"
+
+            if microservices_config[microservice]['publicNetworkAccess'] is None:
+                public_access = None
+            else:
+                public_access = microservices_config[microservice]['publicNetworkAccess']
+
             print(f"Provisioning App Service: {microservice_name}")
             web_app_result = self.web_client.web_apps.begin_create_or_update(
                 self.resource_group,
@@ -33,6 +45,8 @@ class AppService:
                     "location": location,
                     "server_farm_id": app_service_plan.id,
                     "vnetRouteAllEnabled": microservices_config[microservice]['vnet-enabled'],
+                    "virtualNetworkSubnetId": subnet,
+                    "publicNetworkAccess": public_access,
                     "site_config": {
                         "linux_fx_version": microservices_config[microservice]['linux-fx-version'],
                         "always_on": microservices_config[microservice]['always-on']
