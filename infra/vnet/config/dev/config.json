@@ -67,12 +67,7 @@
       {
         "name": "TDEI-PE-subnet",
         "properties": {
-          "addressPrefix": "10.11.0.192/26",
-          "delegations": [
-            {
-              "name": "TDEI-PE"
-            }
-          ]
+          "addressPrefix": "10.11.0.192/26"
         }
       }
     ]
