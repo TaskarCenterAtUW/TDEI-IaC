@@ -73,7 +73,7 @@ class AppService:
 
             # Keycloak service requires a startup command line
             if "appCommandLine" in microservices_config[microservice]:
-                site_config.appCommandLine = microservices_config[microservice]['appCommandLine']
+                site_config.app_command_line = microservices_config[microservice]['appCommandLine']
             self.web_client.web_apps.update_configuration(self.resource_group, microservice_name, site_config)
             print("Completed Configuring Health Check")
 

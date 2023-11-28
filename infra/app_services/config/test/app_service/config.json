@@ -20,6 +20,9 @@
             "name": "keycloak-console.logs",
             "category":"AppServiceConsoleLogs",
             "enabled": true
+        },
+        "cors-settings": {
+            "allowed-origins": "*"
         }
     },
     "tdei-auth-n-z": {
