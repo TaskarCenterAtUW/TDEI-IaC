@@ -1,24 +1,79 @@
 {
   "vnet_name" : "TDEI-STAGE-VNET",
   "properties": {
-    "addressSpace": {"addressPrefixes": ["10.10.0.0/16"]},
+    "addressSpace": {"addressPrefixes": ["10.10.0.0/24"]},
     "subnets":
     [
       {
-        "name": "tdei-appservice-subnet",
-        "properties": {"addressPrefix": "10.10.0.0/26"}
+        "name": "TDEI-1-subnet",
+        "properties": {
+          "addressPrefix": "10.13.0.0/27",
+          "delegations": [
+            {
+              "name": "TDEI-1",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
       },
       {
-        "name": "tdei-gateway-subnet",
-        "properties": {"addressPrefix": "10.10.0.64/26"}
+        "name": "TDEI-2-subnet",
+        "properties": {
+          "addressPrefix": "10.13.0.32/27",
+          "delegations": [
+            {
+              "name": "TDEI-2",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
       },
       {
-        "name": "tdei-auth-subnet",
-        "properties": {"addressPrefix": "10.10.0.128/26"}
+        "name": "TDEI-3-subnet",
+        "properties": {
+          "addressPrefix": "10.13.0.64/27",
+          "delegations": [
+            {
+              "name": "TDEI-3",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
       },
       {
-        "name": "tdei-usermanagement-subnet",
-        "properties": {"addressPrefix": "10.10.0.192/26"}
+        "name": "TDEI-4-subnet",
+        "properties": {
+          "addressPrefix": "10.13.0.96/27",
+          "delegations": [
+            {
+              "name": "TDEI-4",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-5-subnet",
+        "properties": {
+          "addressPrefix": "10.13.0.128/27",
+          "delegations": [
+            {
+              "name": "TDEI-5",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-PE-subnet",
+        "properties": {
+          "addressPrefix": "10.13.0.192/26",
+          "delegations": [
+            {
+              "name": "TDEI-PE"
+            }
+          ]
+        }
       }
     ]
   }

@@ -49,6 +49,9 @@
             "name": "authnz-console.logs",
             "category":"AppServiceConsoleLogs",
             "enabled": true
+        },
+        "cors-settings": {
+            "allowed_origins": ["https://tdei-usermanagement-front-end-stage.azurewebsites.net"]
         }
     }
 }

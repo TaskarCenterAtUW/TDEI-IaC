@@ -1,7 +1,7 @@
 {
   "vnet_name" : "TDEI-DEV-VNET",
   "properties": {
-    "addressSpace": {"addressPrefixes": ["10.24.0.0/16"]},
+    "addressSpace": {"addressPrefixes": ["10.24.0.0/24"]},
     "subnets":
     [
       {

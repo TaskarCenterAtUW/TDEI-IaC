@@ -26,7 +26,8 @@ class AppService:
                 microservices_config[microservice]['app-service-plan'] + "-" + environment 
             )
 
-            if microservices_config[microservice]['subnet'] is None:
+            # Assigning the subnet equivalent of App service plan. Can include this in the config
+            if microservices_config[microservice]['vnet-enabled'] is False:
                 subnet = None
             else:
                 vnet = f"/subscriptions/{self.subscription_id}/resourceGroups/{self.resource_group}/providers/Microsoft.Network/virtualNetworks/TDEI-" + environment + "-VNET/subnets/"
@@ -69,4 +70,3 @@ class AppService:
 
             self.web_client.web_apps.update_configuration(self.resource_group, microservice_name, site_config)
             print("Completed Configuring Health Check")
-
