@@ -1,13 +1,13 @@
 {
   "vnet_name" : "TDEI-STAGE-VNET",
   "properties": {
-    "addressSpace": {"addressPrefixes": ["10.11.0..0/24"]},
+    "addressSpace": {"addressPrefixes": ["10.11.0.0/24"]},
     "subnets":
     [
       {
         "name": "TDEI-1-subnet",
         "properties": {
-          "addressPrefix": "10.11.0..0/27",
+          "addressPrefix": "10.11.0.0/27",
           "delegations": [
             {
               "name": "TDEI-1",
@@ -19,7 +19,7 @@
       {
         "name": "TDEI-2-subnet",
         "properties": {
-          "addressPrefix": "10.11.0..32/27",
+          "addressPrefix": "10.11.0.32/27",
           "delegations": [
             {
               "name": "TDEI-2",
@@ -31,7 +31,7 @@
       {
         "name": "TDEI-3-subnet",
         "properties": {
-          "addressPrefix": "10.11.0..64/27",
+          "addressPrefix": "10.11.0.64/27",
           "delegations": [
             {
               "name": "TDEI-3",
@@ -43,7 +43,7 @@
       {
         "name": "TDEI-4-subnet",
         "properties": {
-          "addressPrefix": "10.11.0..96/27",
+          "addressPrefix": "10.11.0.96/27",
           "delegations": [
             {
               "name": "TDEI-4",
@@ -55,7 +55,7 @@
       {
         "name": "TDEI-5-subnet",
         "properties": {
-          "addressPrefix": "10.11.0..128/27",
+          "addressPrefix": "10.11.0.128/27",
           "delegations": [
             {
               "name": "TDEI-5",
@@ -67,7 +67,7 @@
       {
         "name": "TDEI-PE-subnet",
         "properties": {
-          "addressPrefix": "10.11.0..192/26",
+          "addressPrefix": "10.11.0.192/26",
           "delegations": [
             {
               "name": "TDEI-PE"
