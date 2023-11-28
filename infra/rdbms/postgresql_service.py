@@ -3,12 +3,26 @@ import os
 from azure.mgmt.rdbms.postgresql_flexibleservers import PostgreSQLManagementClient
 from azure.mgmt.rdbms.postgresql_flexibleservers.models import Server, Sku, Storage, Database
 from infra.keyvault.keyvault import KeyVault
+import psycopg2
+import requests
 
 class PostgreSQLService:
     def __init__(self, credential, subscription_id, resource_group):
         self.postgres_client = PostgreSQLManagementClient(
             credential, subscription_id)
         self.resource_group = resource_group
+
+    def __get_public_ip(self):
+        try:
+            response = requests.get('https://api.ipify.org')
+            if response.status_code == 200:
+                return response.text
+            else:
+                return None
+        except requests.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
 
     def provision(self, config_name, environment, location):
 
@@ -55,7 +69,6 @@ class PostgreSQLService:
             server_name=server_name,
             firewall_rule_name="AllowPublicAccess",
             parameters={"properties": {"endIpAddress": "0.0.0.0", "startIpAddress": "0.0.0.0"}},
-            # Change the above start and end IP Address to restrict from public access
         )
 
         # Enable POSTGIS azure.extension in the flexible server
@@ -79,3 +92,36 @@ class PostgreSQLService:
                 parameters=database_parameters)
 
             print(f"Database '{database}' created successfully.")
+
+        # Allow Current IP Address so that provisioning the schema is possible
+        public_ip = self.__get_public_ip()
+        print(public_ip)
+        self.postgres_client.firewall_rules.begin_create_or_update(
+            resource_group_name=self.resource_group,
+            server_name=server_name,
+            firewall_rule_name="ProvisionKeycloakSchema",
+            parameters={"properties": {"endIpAddress": public_ip, "startIpAddress": public_ip}},
+        )
+
+        # provision keycloak schema in tdei database
+        create_schema_query = "CREATE SCHEMA IF NOT EXISTS keycloak"
+        conn = psycopg2.connect(user=postgresql_config['secrets']['administrator_login'],
+                                password=postgresql_config['secrets']['administrator_login_password'],
+                                host=postgresql_result.fully_qualified_domain_name,
+                                port=5432, database="tdei")
+
+        cursor = conn.cursor()
+        cursor.execute(create_schema_query)
+        conn.commit()
+        cursor.close()
+        conn.close()
+        print("Provisioned keycloak schema under tdei database")
+
+        # Delete the provision keycloak firewall access
+        self.postgres_client.firewall_rules.begin_delete(
+            resource_group_name=self.resource_group,
+            server_name=server_name,
+            firewall_rule_name="ProvisionKeycloakSchema"
+        )
+        print("Firewall Rule provision key cloak deleted")
+

@@ -79,6 +79,7 @@ class AppService:
 
             # Cors Settings. If cors needs an array, loop through the array
             if "cors-settings" in microservices_config[microservice]:
+                KeyVault.substitue_expression(microservices_config[microservice]['cors-settings'])
                 command = 'az webapp cors add --resource-group ' + self.resource_group + ' --name ' + microservice_name + ' --allowed-origins ' + microservices_config[microservice]['cors-settings']['allowed-origins']
                 return_code, result = self.__execute_command(command)
                 if return_code == 0:

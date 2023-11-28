@@ -71,6 +71,9 @@
             "name": "gateway-console.logs",
             "category":"AppServiceConsoleLogs",
             "enabled": true
+        },
+        "cors-settings": {
+            "allowed-origins": "*"
         }
     },
     "tdei-osw-validation": {
@@ -294,7 +297,7 @@
         "app-service-plan": "TDEI-5",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/user-management-front-end:stage-latest",
         "always-on": true,
-        "vnet-enabled":true,
+        "vnet-enabled":false,
         "publicNetworkAccess": null,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
@@ -341,6 +344,9 @@
             "name": "usermanagement-ts-console.logs",
             "category":"AppServiceConsoleLogs",
             "enabled": true
+        },
+        "cors-settings": {
+            "allowed-origins": "https://{tdei-usermanagement-front-end-hostname}"
         }
     },
     "tdei-api-gateway-spec": {

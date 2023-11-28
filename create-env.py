@@ -95,8 +95,6 @@ if __name__ == "__main__":
             location=location
         )
 
-        # TODO: Run DB scripts for keycloak schema creation on tdei database
-
         # Provision Storage Account
         storage_account = StorageAccount(
             subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME, credential=credential)
@@ -145,8 +143,6 @@ if __name__ == "__main__":
             environment=environment,
             location=location
         )
-
-        # TODO: Run DB scripts for keycloak and user management and OSW, Pathways and GTFS too?
 
         # Provision AppServices
         app_service = AppService(web_client, RESOURCE_GROUP_NAME, subscription_id)
