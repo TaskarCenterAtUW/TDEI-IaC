@@ -1,5 +1,6 @@
 import json
 import os
+import subprocess
 from infra.keyvault.keyvault import KeyVault
 
 class AppService:
@@ -7,6 +8,12 @@ class AppService:
         self.web_client = web_client
         self.resource_group = resource_group
         self.subscription_id = subscription_id
+
+    def __execute_command(self, command):
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
+        response = process.communicate()
+        json_message = response[0].decode()
+        return (process.returncode, '' if json_message == '' else json.loads(json_message))
 
     def provision(self, config_name, location, environment):
         # Load microservices config.json
@@ -54,8 +61,8 @@ class AppService:
                     },
                 }
             ).result()
-            print(
-                f"Completed - {web_app_result.default_host_name}. Configuring Health Check for it")
+            print(f"Completed - {web_app_result.default_host_name}. Configuring Health Check for it")
+            print(f"Completed -Id is  {web_app_result.id}.")
             KeyVault.setSecret(microservice + '-hostname', web_app_result.default_host_name)
             site_config = self.web_client.web_apps.get_configuration(self.resource_group, microservice_name)
 
@@ -67,6 +74,26 @@ class AppService:
             # Keycloak service requires a startup command line
             if "appCommandLine" in microservices_config[microservice]:
                 site_config.appCommandLine = microservices_config[microservice]['appCommandLine']
-
             self.web_client.web_apps.update_configuration(self.resource_group, microservice_name, site_config)
             print("Completed Configuring Health Check")
+
+            # Cors Settings. If cors needs an array, loop through the array
+            if "cors-settings" in microservices_config[microservice]:
+                command = 'az webapp cors add --resource-group ' + self.resource_group + ' --name ' + microservice_name + ' --allowed-origins ' + microservices_config[microservice]['cors-settings']['allowed-origins']
+                return_code, result = self.__execute_command(command)
+                if return_code == 0:
+                    print(result)
+                else:
+                    print('Failed to create CORS')
+
+            if microservices_config[microservice]['vnet-enabled'] is True:
+                # Provisioning Private Endpoint Connection
+                pe_command = 'az network private-endpoint create --resource-group ' + self.resource_group + ' --name ' + microservice_name + '-pe --vnet-name ' + 'TDEI-' + environment + '-VNET --subnet TDEI-pe-subnet --private-connection-resource-id ' + web_app_result.id + ' --connection-name ' + microservice_name + 'plsc --group-id sites'
+                print(pe_command)
+                return_code, result = self.__execute_command(pe_command)
+                if return_code == 0:
+                    print(result)
+                else:
+                    print('Failed to create private endpoint')
+
+

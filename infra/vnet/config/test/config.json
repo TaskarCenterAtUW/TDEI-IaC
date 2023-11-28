@@ -26,6 +26,12 @@
             }
           ]
         }
+      },
+      {
+        "name": "TDEI-pe-subnet",
+        "properties": {
+          "addressPrefix": "10.13.0.64/27"
+        }
       }
     ]
   }

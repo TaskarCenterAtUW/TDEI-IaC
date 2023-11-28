@@ -95,6 +95,8 @@ if __name__ == "__main__":
             location=location
         )
 
+        # TODO: Run DB scripts for keycloak schema creation on tdei database
+
         # Provision Storage Account
         storage_account = StorageAccount(
             subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME, credential=credential)

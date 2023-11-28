@@ -2,8 +2,8 @@
     "tdei-keycloak": {
         "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/keycloak:stage-latest",
-        "always-on": true,
-        "vnet-enabled":true,
+        "always-on": false,
+        "vnet-enabled":false,
         "publicNetworkAccess": null,
         "health-check-path": "/health",
         "appCommandLine": "--http-port=8080 --hostname=tdei-keycloak-test.azurewebsites.net --hostname-strict-backchannel=false --health-enabled=true",
@@ -51,7 +51,7 @@
             "enabled": true
         },
         "cors-settings": {
-            "allowed_origins": ["https://tdei-usermanagement-front-end-stage.azurewebsites.net"]
+            "allowed-origins": "https://tdei-usermanagement-front-end-stage.azurewebsites.net"
         }
     }
 }
