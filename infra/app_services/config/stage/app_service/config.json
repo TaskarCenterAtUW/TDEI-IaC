@@ -2,6 +2,9 @@
     "tdei-keycloak": {
         "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/keycloak:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "health-check-path": "/health",
         "appCommandLine": "--http-port=8080 --hostname=tdei-keycloak-stage.azurewebsites.net --hostname-strict-backchannel=false --health-enabled=true",
         "health-check-http-status": 200,
@@ -22,6 +25,9 @@
     "tdei-auth-n-z": {
         "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/auth-n-z:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": "Disabled",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -48,6 +54,9 @@
     "tdei-gateway": {
         "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gateway:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -62,11 +71,17 @@
             "name": "gateway-console.logs",
             "category":"AppServiceConsoleLogs",
             "enabled": true
+        },
+        "cors-settings": {
+            "allowed-origins": "*"
         }
     },
     "tdei-osw-validation": {
         "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-validation:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": "Disabled",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -97,6 +112,9 @@
     "tdei-logger": {
         "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/logger:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": "Disabled",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -119,6 +137,9 @@
     "tdei-gtfs-pathways-validation": {
         "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-pathways-validation:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": "Disabled",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -143,6 +164,9 @@
     "tdei-gtfs-flex-validation" : {
         "app-service-plan": "TDEI-3",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-flex-validation:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": "Disabled",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -167,6 +191,9 @@
     "tdei-pathways-datasvc" : {
         "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/data-service:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": "Disabled",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -197,6 +224,9 @@
     "tdei-flex-datasvc": {
         "app-service-plan": "TDEI-3",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/flex-datasvc-ts:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": "Disabled",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -230,6 +260,9 @@
     "tdei-osw-datasvc" : {
         "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-datasvc-ts:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": "Disabled",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -263,6 +296,9 @@
     "tdei-usermanagement-front-end" : {
         "app-service-plan": "TDEI-5",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/user-management-front-end:stage-latest",
+        "always-on": true,
+        "vnet-enabled":false,
+        "publicNetworkAccess": null,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -281,6 +317,9 @@
     "tdei-usermanagement" : {
         "app-service-plan": "TDEI-5",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/usermanagement-ts:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
         "application-parameters": {
@@ -305,11 +344,17 @@
             "name": "usermanagement-ts-console.logs",
             "category":"AppServiceConsoleLogs",
             "enabled": true
+        },
+        "cors-settings": {
+            "allowed-origins": "https://{tdei-usermanagement-front-end-hostname}"
         }
     },
     "tdei-api-gateway-spec": {
         "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|swaggerapi/swagger-ui:latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io/v1",
             "QUERY_CONFIG_ENABLED": true,
@@ -327,6 +372,9 @@
     "tdei-osw-confidence-metric": {
         "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-confidence-metric:stage-latest",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": "Disabled",
         "health-check-path": "/health",
         "health-check-http-status": 200,
         "application-parameters": {

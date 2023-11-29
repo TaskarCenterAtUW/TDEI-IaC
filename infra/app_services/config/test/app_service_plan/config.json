@@ -14,29 +14,5 @@
             "tier": "BASIC"
         },
         "reserved" : true
-    },
-    {
-        "plan-name": "TDEI-3",
-        "sku": {
-            "name": "B2",
-            "tier": "BASIC"
-        },
-        "reserved" : true
-    },
-    {
-        "plan-name": "TDEI-4",
-        "sku": {
-            "name": "B2",
-            "tier": "BASIC"
-        },
-        "reserved" : true
-    },
-    {
-        "plan-name": "TDEI-5",
-        "sku": {
-            "name": "B2",
-            "tier": "BASIC"
-        },
-        "reserved" : true
     }
 ]

@@ -10,3 +10,6 @@ azure-mgmt-loganalytics
 azure-mgmt-applicationinsights
 azure-mgmt-monitor
 ansible
+azure-mgmt-network
+psycopg2
+requests

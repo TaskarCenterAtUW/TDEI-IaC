@@ -1,0 +1,38 @@
+{
+  "properties": {
+    "addressSpace": {"addressPrefixes": ["10.13.0.0/24"]},
+    "subnets":
+    [
+      {
+        "name": "TDEI-1-subnet",
+        "properties": {
+          "addressPrefix": "10.13.0.0/27",
+          "delegations": [
+            {
+              "name": "TDEI-1",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-2-subnet",
+        "properties": {
+          "addressPrefix": "10.13.0.32/27",
+          "delegations": [
+            {
+              "name": "TDEI-2",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-pe-subnet",
+        "properties": {
+          "addressPrefix": "10.13.0.64/27"
+        }
+      }
+    ]
+  }
+}

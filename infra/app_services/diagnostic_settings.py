@@ -24,8 +24,6 @@ class DiagnosticSettings:
         microservices_config = json.load(microservices_config_file)
         print(f"Loaded microservices config file {config_file}")
 
-        #workspace_id= "/subscriptions/61a3b0f8-bf9b-4f99-89fa-f18c203c6086/resourceGroups/GaussianRG-rkd1907/providers/Microsoft.OperationalInsights/workspaces/TDEI"
-
         for microservice in microservices_config:
             microservice_name = microservice + "-" + environment
 
@@ -35,8 +33,6 @@ class DiagnosticSettings:
             workspace_id = microservices_config[microservice]['diagnostic-settings']['workspace_id']
             log_settings = LogSettings(
                 category=microservices_config[microservice]['diagnostic-settings']['category'],
-                #enabled=microservices_config[microservice]['diagnostic-settings']['enabled'],
-                #category="AppServiceConsoleLogs",
                 enabled=True,
                 retention_policy=RetentionPolicy(
                     days=0,
@@ -64,4 +60,3 @@ class DiagnosticSettings:
             )
 
             print("Diagnostic settings added to the app service.")
-

@@ -8,3 +8,4 @@ from .keyvault.keyvault import KeyVault
 from .app_services.diagnostic_settings import  DiagnosticSettings
 from .loganalytics.loganalytics import LogAnalytics
 from .app_services.app_service_parameters import AppServiceParameters
+from .vnet.vnet import VirtualNetworks

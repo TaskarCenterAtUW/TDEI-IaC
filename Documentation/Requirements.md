@@ -28,7 +28,12 @@ This section lists the tasks that are under the scope of "Infrastructure as Code
 2. Delete an environment using scripts
 3. Provision another environment with same infra config as one of the DEV, TEST or PROD environments
 
-### Out of Scope for V2 - In Scope for V3
+### Scope of V3
+1. Provision  virtualNet, Address space, Subnets using IaC  
+2. Adjust code to put app services inside the Virtual Network  
+   -  Test every github repo workflow if they work well with this change
+
+### Out of Scope for V3 - In Scope for V4
 This section lists the tasks that are **out of scope** for "Infrastructure as Code - V2":
 
 1. Cloning an environment to "replicate" a bug in that environment.

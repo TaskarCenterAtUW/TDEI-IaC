@@ -35,7 +35,7 @@ class LogAnalytics:
                 "tags": config['logAnalytics']['tags']
             }
         ).result()
-        print(response.id)
+
         KeyVault.setSecret('tdei-loganalytics-workspace-id', response.id)
 
         # Provision Application Insights Next
