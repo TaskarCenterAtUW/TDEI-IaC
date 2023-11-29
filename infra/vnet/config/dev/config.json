@@ -1,5 +1,4 @@
 {
-  "vnet_name" : "TDEI-STAGE-VNET",
   "properties": {
     "addressSpace": {"addressPrefixes": ["10.11.0.0/24"]},
     "subnets":
