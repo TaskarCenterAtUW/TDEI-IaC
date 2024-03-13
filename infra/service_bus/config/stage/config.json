@@ -134,7 +134,7 @@
             ]
         },
         {
-            "name": "osw-upload",
+            "name": "osw-formatting-response",
             "parameters": {
                 "properties": {
                     "max_size_in_megabytes": 1024,
@@ -144,15 +144,7 @@
             },
             "subscriptions":[
                 {
-                    "name": "upload-validation-processor",
-                    "parameters": {
-                        "properties": {
-                            "max_delivery_count": 10
-                        }
-                    }
-                },
-                {
-                    "name": "data-logger",
+                    "name": "res-handler",
                     "parameters": {
                         "properties": {
                             "max_delivery_count": 10
@@ -162,7 +154,7 @@
             ]
         },
         {
-            "name": "osw-validation",
+            "name": "osw-formatting-request",
             "parameters": {
                 "properties": {
                     "max_size_in_megabytes": 1024,
@@ -172,7 +164,27 @@
             },
             "subscriptions":[
                 {
-                    "name": "osw-validation-result",
+                    "name": "res-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 1
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "osw-validation-request",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "request-handler",
                     "parameters": {
                         "properties": {
                             "max_delivery_count": 10
@@ -230,7 +242,7 @@
             ]
         },
         {
-            "name": "osw-data-service",
+            "name": "osw-validation-response",
             "parameters": {
                 "properties": {
                     "max_size_in_megabytes": 1024,
@@ -240,7 +252,7 @@
             },
             "subscriptions":[
                 {
-                    "name": "data-logger",
+                    "name": "res-handler",
                     "parameters": {
                         "properties": {
                             "max_delivery_count": 10
@@ -310,7 +322,7 @@
             ]
         },
         {
-            "name": "osw-confidence-requested",
+            "name": "osw-confidence-request",
             "parameters": {
                 "properties": {
                     "max_size_in_megabytes": 1024,
@@ -320,7 +332,7 @@
             },
             "subscriptions":[
                 {
-                    "name": "osw-confidence-requested-sub",
+                    "name": "request-handler",
                     "parameters": {
                         "properties": {
                             "max_delivery_count": 10
@@ -330,7 +342,7 @@
             ]
         },
         {
-            "name": "osw-confidence-calculated",
+            "name": "osw-confidence-response",
             "parameters": {
                 "properties": {
                     "max_size_in_megabytes": 1024,
@@ -340,7 +352,7 @@
             },
             "subscriptions":[
                 {
-                    "name": "osw-confidence-calculated-sub",
+                    "name": "res-handler",
                     "parameters": {
                         "properties": {
                             "max_delivery_count": 10
