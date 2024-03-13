@@ -397,7 +397,7 @@
         "app-service-plan": "TDEI-5",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-formatter:stage-latest",
         "always-on": false,
-        "vnet-enabled": false,
+        "vnet-enabled": true,
         "publicNetworkAccess": null,
         "health-check-path": "/health",
         "health-check-http-status": 200,
