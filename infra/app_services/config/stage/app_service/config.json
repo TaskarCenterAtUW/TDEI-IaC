@@ -282,7 +282,8 @@
             "DATASVC_TOPIC": "osw-data-service",
             "CONF_REQ_TOPIC": "osw-confidence-requested",
             "CONF_RES_TOPIC": "osw-confidence-calculated",
-            "CONF_RES_SUB": "osw-confidence-calculated-sub"
+            "CONF_RES_SUB": "osw-confidence-calculated-sub",
+            "GATEWAY_URL": "https://{tdei-gateway-hostname}"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
