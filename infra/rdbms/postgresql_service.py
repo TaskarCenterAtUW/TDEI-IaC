@@ -79,6 +79,14 @@ class PostgreSQLService:
             parameters={"properties": {"source": "user-override", "value": "POSTGIS"}},
         )
 
+        # Enable uuid-ossp extension in the flexible server
+        self.postgres_client.configurations.begin_update(
+             resource_group_name=self.resource_group,
+            server_name=server_name,
+            configuration_name="azure.extensions",
+            parameters={"properties": {"source": "user-override", "value": "UUID-OSSP"}},
+        )
+
         # Provision Databases
         database_parameters = Database(
             charset="UTF8",

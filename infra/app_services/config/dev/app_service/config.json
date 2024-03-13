@@ -415,5 +415,67 @@
             "category":"AppServiceConsoleLogs",
             "enabled": true
         }
+    },
+    "tdei-backend-service":{
+        "app-service-plan": "TDEI-5",
+        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/backend-service:dev-latest",
+        "always-on": false,
+        "vnet-enabled": false,
+        "publicNetworkAccess": null,
+        "health-check-path": "/health",
+        "health-check-http-status": 200,
+        "application-parameters": {
+            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+            "QUEUECONNECTION":"{service-bus-connection-string}",
+            "STORAGECONNECTION": "{storage-connection-string}",
+            "PROVIDER": "Azure",
+            "POSTGRES_USER": "{postgresql-administrator-login}",
+            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
+            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
+            "SSL":"TRUE",
+            "POSTGRES_DB":"tdei",
+            "POSTGRES_PORT": "5432",
+            "BACKEND_RESPONSE_TOPIC":"backend-response",
+            "AUTH_HOST":"https://{tdei-auth-n-z-hostname}"
+        },
+        "diagnostic-settings": {
+            "workspace_id": "{tdei-loganalytics-workspace-id}",
+            "name": "backend-service-console.logs",
+            "category":"AppServiceConsoleLogs",
+            "enabled": true
+        }
+    },
+    "extract-load-service":{
+        "app-service-plan": "TDEI-5",
+        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/extract-load-service:dev-latest",
+        "always-on": false,
+        "vnet-enabled": false,
+        "publicNetworkAccess": null,
+        "health-check-path": "/health",
+        "health-check-http-status": 200,
+        "application-parameters": {
+            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+            "QUEUECONNECTION":"{service-bus-connection-string}",
+            "STORAGECONNECTION": "{storage-connection-string}",
+            "PROVIDER": "Azure",
+            "POSTGRES_USER": "{postgresql-administrator-login}",
+            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
+            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
+            "SSL":"TRUE",
+            "POSTGRES_DB":"tdei",
+            "POSTGRES_PORT": "5432",
+            "EXTRACT_LOAD_RESPONSE_TOPIC":"extract-load-response",
+            "AUTH_HOST":"https://{tdei-auth-n-z-hostname}"
+        },
+        "diagnostic-settings": {
+            "workspace_id": "{tdei-loganalytics-workspace-id}",
+            "name": "extract-load-service-console.logs",
+            "category":"AppServiceConsoleLogs",
+            "enabled": true
+        }
     }
 }
