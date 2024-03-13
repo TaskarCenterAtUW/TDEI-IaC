@@ -278,9 +278,7 @@
             "POSTGRES_PORT": "5432",
             "SSL": "TRUE",
             "DATASVC_TOPIC": "osw-data-service",
-            "VALIDATION_SUBSCRIPTION": "osw-validation-result",
-            "VALIDATION_TOPIC": "osw-validation",
-            "UPLOAD_TOPIC": "osw-upload",
+            "USER_MANAGEMENT_HOST":"https://{tdei-usermanagement-ts-hostname}",
             "CONF_REQ_TOPIC": "osw-confidence-requested",
             "CONF_RES_TOPIC": "osw-confidence-calculated",
             "CONF_RES_SUB": "osw-confidence-calculated-sub",
@@ -388,6 +386,32 @@
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
             "name": "osw-confidence-metric-console.logs",
+            "category":"AppServiceConsoleLogs",
+            "enabled": true
+        }
+    },
+    "tdei-osw-formatter": {
+        "app-service-plan": "TDEI-5",
+        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-formatter:dev-latest",
+        "always-on": false,
+        "vnet-enabled": false,
+        "publicNetworkAccess": null,
+        "health-check-path": "/health",
+        "health-check-http-status": 200,
+        "application-parameters": {
+            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+            "QUEUECONNECTION":"{service-bus-connection-string}",
+            "STORAGECONNECTION": "{storage-connection-string}",
+            "PROVIDER": "Azure",
+            "FORMATTER_TOPIC": "osw-formatting-request",
+            "FORMATTER_UPLOAD_TOPIC": "osw-formatting-response",
+            "FORMATTER_SUBSCRIPTION": "request-handler"
+        },
+        "diagnostic-settings": {
+            "workspace_id": "{tdei-loganalytics-workspace-id}",
+            "name": "osw-formatter-console.logs",
             "category":"AppServiceConsoleLogs",
             "enabled": true
         }
