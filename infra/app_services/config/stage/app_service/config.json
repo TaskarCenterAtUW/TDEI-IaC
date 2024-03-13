@@ -397,7 +397,7 @@
     },
     "tdei-backend-service":{
         "app-service-plan": "TDEI-5",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/backend-service:dev-latest",
+        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/backend-service:stage-latest",
         "always-on": false,
         "vnet-enabled": false,
         "publicNetworkAccess": null,
@@ -428,7 +428,7 @@
     },
     "extract-load-service":{
         "app-service-plan": "TDEI-5",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/extract-load-service:dev-latest",
+        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/extract-load-service:stage-latest",
         "always-on": false,
         "vnet-enabled": false,
         "publicNetworkAccess": null,

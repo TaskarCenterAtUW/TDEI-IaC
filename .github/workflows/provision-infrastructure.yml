@@ -31,7 +31,7 @@ on:
 
 jobs:
   provision-infra:
-    if: contains('["uwtcat","rdevalap"]', github.actor)
+    if: contains('["uwtcat","rdevalap","susrisha"]', github.actor)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
