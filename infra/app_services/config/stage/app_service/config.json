@@ -330,9 +330,6 @@
             "DATABASE_PASSWORD": "{postgresql-administrator-password}",
             "DATABASE_PORT": "5432",
             "DATABASE_DB":"tdei",
-            "DATASVC_TOPIC": "gtfs-flex-data-service",
-            "VALIDATION_SUBSCRIPTION": "gtfs-flex-validation-result",
-            "VALIDATION_TOPIC": "gtfs-flex-validation",
             "SSL":"TRUE"
         },
         "diagnostic-settings": {
