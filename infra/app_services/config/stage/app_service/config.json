@@ -279,10 +279,6 @@
             "POSTGRES_PORT": "5432",
             "SSL": "TRUE",
             "USER_MANAGEMENT_HOST":"https://{tdei-usermanagement-ts-hostname}",
-            "DATASVC_TOPIC": "osw-data-service",
-            "CONF_REQ_TOPIC": "osw-confidence-requested",
-            "CONF_RES_TOPIC": "osw-confidence-calculated",
-            "CONF_RES_SUB": "osw-confidence-calculated-sub",
             "GATEWAY_URL": "https://{tdei-gateway-hostname}"
         },
         "diagnostic-settings": {
@@ -357,7 +353,7 @@
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io/v1",
             "QUERY_CONFIG_ENABLED": true,
-            "URL": "https://raw.githubusercontent.com/TaskarCenterAtUW/TDEI-ExternalAPIs/gs-api-gateway-implementation/tdei-api-gateway.json",
+            "URL": "https://raw.githubusercontent.com/TaskarCenterAtUW/TDEI-ExternalAPIs/gs-api-gateway-implementation/tdei-api-gateway-stage.json",
             "WEBSITE_HEALTHCHECK_MAXPINGFAILURES": 10,
             "WEBSITES_ENABLE_APP_SERVICE_STORAGE" : false
         },
