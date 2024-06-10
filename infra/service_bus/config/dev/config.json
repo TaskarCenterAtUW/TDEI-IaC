@@ -443,6 +443,50 @@
                 }
             ]
 
+        },
+        {
+
+            "name": "dataset-zip-response",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "res-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 1
+                        }
+                    }
+                }
+            ]
+
+        },
+        {
+
+            "name": "dataset-zip-request",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "request-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 1
+                        }
+                    }
+                }
+            ]
+
         }
     ],
     "tags": {
