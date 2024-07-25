@@ -5,7 +5,7 @@ from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.web import WebSiteManagementClient
 from azure.identity import DefaultAzureCredential
 from infra import StorageAccount, AppService, AppServiceParameters, AppServicePlan, PostgreSQLService, KeyVault
-from infra import LoggerDB, ServiceBus, LogAnalytics, DiagnosticSettings, VirtualNetworks
+from infra import ServiceBus, LogAnalytics, DiagnosticSettings, VirtualNetworks
 
 
 def show_help():
@@ -113,18 +113,6 @@ if __name__ == "__main__":
             location=location
         )
         print("service bus: provisioned")
-
-        # Provision Logger DB - CosmosDB for MongoDB
-        loggerDB = LoggerDB(
-            credential=credential,
-            subscription_id=subscription_id,
-            resource_group=RESOURCE_GROUP_NAME)
-        loggerDB.provision(
-            config_name=config,
-            environment=environment,
-            location=location
-        )
-        print("Logger DB: provisioned")
 
         # Provision Log Analytics workspace and Application Insights
         logAnalytics = LogAnalytics(credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
