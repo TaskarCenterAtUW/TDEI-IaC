@@ -2,7 +2,7 @@
     {
         "plan-name": "TDEI-1",
         "sku": {
-            "name": "B2",
+            "name": "B3",
             "tier": "BASIC"
         },
         "reserved" : true
@@ -10,31 +10,23 @@
     {
         "plan-name": "TDEI-2",
         "sku": {
-            "name": "B2",
-            "tier": "BASIC"
+            "name": "P2V3",
+            "tier": "PREMIUMV3"
         },
         "reserved" : true
     },
     {
         "plan-name": "TDEI-3",
         "sku": {
-            "name": "B2",
-            "tier": "BASIC"
+            "name": "P2V3",
+            "tier": "PREMIUMV3"
         },
         "reserved" : true
     },
     {
         "plan-name": "TDEI-4",
         "sku": {
-            "name": "B2",
-            "tier": "BASIC"
-        },
-        "reserved" : true
-    },
-    {
-        "plan-name": "TDEI-5",
-        "sku": {
-            "name": "B2",
+            "name": "B3",
             "tier": "BASIC"
         },
         "reserved" : true

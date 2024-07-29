@@ -1,6 +1,6 @@
 {
     "tdei-keycloak": {
-        "app-service-plan": "TDEI-1",
+        "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/keycloak:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
@@ -61,171 +61,8 @@
             "enabled": true
         }
     },
-    "tdei-osw-validation": {
-        "app-service-plan": "TDEI-4",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-validation:latest",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION":"{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "PORT": "8080",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "SERVICE_URL": "https://{tdei-usermanagement-hostname}/api/v1/service",
-            "POSTGRES_USER": "{postgresql-administrator-login}",
-            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
-            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "POSTGRES_PORT": "5432",
-            "SSL": "TRUE",
-            "DATASVC_TOPIC": "gtfs-flex-data-service",
-            "VALIDATION_SUBSCRIPTION": "gtfs-flex-validation-result",
-            "VALIDATION_TOPIC": "gtfs-flex-validation"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "osw-validation-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-logger": {
-        "app-service-plan": "TDEI-1",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/tdei-logger:latest",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "MONGODBNAME" : "tdei-logs",
-            "MONGORECORDSCOLLECTION" : "records",
-            "MONGOURL": "{loggerdb-connection-string}",
-            "QUEUECONNECTION":"{service-bus-connection-string}",
-            "TOPICS" : "gtfs-flex-upload,gtfs-flex-validation,osw-upload,osw-validation,osw-data-service,gtfs-flex-data-service,gtfs-pathways-upload,gtfs-pathways-validation,gtfs-pathways-data-service"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "logger-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-gtfs-pathways-validation": {
-        "app-service-plan": "TDEI-2",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-pathways-validation:latest",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "CONTAINER_NAME" : "gtfspathways",
-            "QUEUECONNECTION":"{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "UPLOAD_SUBSCRIPTION" : "upload-validation-processor",
-            "UPLOAD_TOPIC" : "gtfs-pathways-upload",
-            "VALIDATION_TOPIC" : "gtfs-pathways-validation"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "pathways-validation-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-gtfs-flex-validation" : {
-        "app-service-plan": "TDEI-3",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-flex-validation:latest",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "EVENT_BUS_CONNECTION" : "{service-bus-connection-string}",
-            "QUEUECONNECTION":"{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "UPLOAD_SUBSCRIPTION": "upload-validation-processor",
-            "UPLOAD_TOPIC": "gtfs-flex-upload",
-            "VALIDATION_TOPIC": "gtfs-flex-validation"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "gtfs-flex-validation-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-pathways-datasvc" : {
-        "app-service-plan": "TDEI-2",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/data-service:latest",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION":"{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "SERVICE_URL": "https://{tdei-usermanagement-hostname}/api/v1/service",
-            "POSTGRES_USER": "{postgresql-administrator-login}",
-            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
-            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "POSTGRES_PORT": "5432",
-            "DATASVC_TOPIC": "gtfs-pathways-data-service",
-            "VALIDATION_SUBSCRIPTION": "gtfs-pathways-validation-result",
-            "VALIDATION_TOPIC": "gtfs-pathways-validation",
-            "UPLOAD_TOPIC": "gtfs-pathways-upload",
-            "STATION_URL" : "https://{tdei-usermanagement-hostname}/api/v1/station"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "template-datasvc-ts-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-flex-datasvc": {
-        "app-service-plan": "TDEI-3",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/flex-datasvc-ts:latest",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "AUTH_SECRET_TOKEN_GENERATE_URL" : "https://{tdei-auth-n-z-hostname}/api/v1/generateSecret",
-            "AUTH_SECRET_TOKEN_VERIFY_URL" : "https://{tdei-auth-n-z-hostname}/api/v1/validateSecret",
-            "EVENT_BUS_CONNECTION" : "{service-bus-connection-string}",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "SERVICE_URL": "https://{tdei-usermanagement-hostname}/api/v1/service",
-            "POSTGRES_USER": "{postgresql-administrator-login}",
-            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
-            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "POSTGRES_PORT": "5432",
-            "SSL": "TRUE",
-            "DATASVC_TOPIC": "gtfs-flex-data-service",
-            "VALIDATION_SUBSCRIPTION": "gtfs-flex-validation-result",
-            "VALIDATION_TOPIC": "gtfs-flex-validation",
-            "UPLOAD_TOPIC": "gtfs-flex-upload"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "template-flex-datasvc-ts-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
     "tdei-osw-datasvc" : {
-        "app-service-plan": "TDEI-4",
+        "app-service-plan": "TDEI-3",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-datasvc-ts:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
@@ -255,7 +92,7 @@
         }
     },
     "tdei-usermanagement-front-end" : {
-        "app-service-plan": "TDEI-5",
+        "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/user-management-front-end:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
@@ -282,7 +119,7 @@
         }
     },
     "tdei-usermanagement" : {
-        "app-service-plan": "TDEI-5",
+        "app-service-plan": "TDEI-4",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/usermanagement-ts:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
@@ -310,7 +147,7 @@
         }
     },
     "tdei-api-gateway-spec": {
-        "app-service-plan": "TDEI-4",
+        "app-service-plan": "TDEI-1",
         "linux-fx-version": "DOCKER|https://index.docker.io/v1/swaggerapi/swagger-ui:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
