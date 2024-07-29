@@ -12,9 +12,6 @@
     "version" : 14,
     "create_mode" : "Create",
     "database" : [
-        "tdei",
-        "gtfsflex",
-        "osw",
-        "gtfspathways"
+        "tdei"
     ]
 }
