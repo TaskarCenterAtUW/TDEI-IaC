@@ -29,7 +29,7 @@ class PostgreSQLService:
         # Load postgresql config file.
         current_dir = os.path.dirname(__file__)
         config_file = os.path.join(
-            current_dir, "config", config_name, "postgresql.config.json")
+            current_dir, "config", config_name, "config.json")
         postgresql_config_file = open(config_file)
         postgresql_config = json.load(postgresql_config_file)
         print(f"Loaded postgresql config file {config_file}")
