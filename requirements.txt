@@ -13,3 +13,4 @@ ansible
 azure-mgmt-network
 psycopg2
 requests
+azure-mgmt-containerinstance
