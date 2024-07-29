@@ -10,8 +10,7 @@
         "name": "tdei-ms-log",
         "max_size_in_megabytes": 1024,
         "max_delivery_count":10,
-        "message_time_to_live":"P14D",
-        "message_lock_duration":"P0D0H0M30S"
+        "message_time_to_live":"P14D"
     },
     "topics": [
         {
@@ -26,6 +25,14 @@
             "subscriptions":[
                 {
                     "name": "upload-validation-processor",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                },
+                {
+                    "name": "data-logger",
                     "parameters": {
                         "properties": {
                             "max_delivery_count": 10
@@ -51,6 +58,14 @@
                             "max_delivery_count": 10
                         }
                     }
+                },
+                {
+                    "name": "data-logger",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
                 }
             ]
         },
@@ -65,7 +80,7 @@
             },
             "subscriptions":[
                 {
-                    "name": "log",
+                    "name": "data-logger",
                     "parameters": {
                         "properties": {
                             "max_delivery_count": 10
@@ -101,7 +116,7 @@
             },
             "subscriptions":[
                 {
-                    "name": "log",
+                    "name": "data-logger",
                     "parameters": {
                         "properties": {
                             "max_delivery_count": 10
@@ -119,7 +134,7 @@
             ]
         },
         {
-            "name": "osw-upload",
+            "name": "osw-formatting-response",
             "parameters": {
                 "properties": {
                     "max_size_in_megabytes": 1024,
@@ -129,7 +144,7 @@
             },
             "subscriptions":[
                 {
-                    "name": "upload-validation-processor",
+                    "name": "res-handler",
                     "parameters": {
                         "properties": {
                             "max_delivery_count": 10
@@ -139,7 +154,7 @@
             ]
         },
         {
-            "name": "osw-validation",
+            "name": "osw-formatting-request",
             "parameters": {
                 "properties": {
                     "max_size_in_megabytes": 1024,
@@ -149,7 +164,35 @@
             },
             "subscriptions":[
                 {
-                    "name": "osw-validation-result",
+                    "name": "res-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 1
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "osw-validation-request",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "request-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                },
+                {
+                    "name": "data-logger",
                     "parameters": {
                         "properties": {
                             "max_delivery_count": 10
@@ -166,7 +209,17 @@
                     "max_message_size_in_kilobytes": 100,
                     "default_message_time_to_live": "P14D"
                 }
-            }
+            },
+            "subscriptions":[
+                {
+                    "name": "data-logger",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
         },
         {
             "name": "gtfs-pathways-data-service",
@@ -176,17 +229,37 @@
                     "max_message_size_in_kilobytes": 100,
                     "default_message_time_to_live": "P14D"
                 }
-            }
+            },
+            "subscriptions":[
+                {
+                    "name": "data-logger",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
         },
         {
-            "name": "osw-data-service",
+            "name": "osw-validation-response",
             "parameters": {
                 "properties": {
                     "max_size_in_megabytes": 1024,
                     "max_message_size_in_kilobytes": 100,
                     "default_message_time_to_live": "P14D"
                 }
-            }
+            },
+            "subscriptions":[
+                {
+                    "name": "res-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
         },
         {
             "name": "python-gtfs-flex-upload",
@@ -207,9 +280,177 @@
                     "default_message_time_to_live": "P14D"
                 }
             }
+        },
+        {
+            "name": "temp-upload",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "upload-validation-processor",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "temp-validation",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "temp-validation-result",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "osw-confidence-request",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "request-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "osw-confidence-response",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "res-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 10
+                        }
+                    }
+                }
+            ]
+        },
+        {
+
+            "name": "backend-request",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "request-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 1
+                        }
+                    }
+                }
+            ]
+
+        },
+        {
+
+            "name": "backend-response",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "res-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 1
+                        }
+                    }
+                }
+            ]
+
+        },
+        {
+
+            "name": "extract-load-request",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "request-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 1
+                        }
+                    }
+                }
+            ]
+
+        },
+        {
+
+            "name": "extract-load-response",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "subscriptions":[
+                {
+                    "name": "res-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 1
+                        }
+                    }
+                }
+            ]
+
         }
     ],
     "tags": {
-        "env": "prod"
+        "env": "stage"
     }
 }
