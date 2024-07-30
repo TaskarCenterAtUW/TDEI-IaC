@@ -11,6 +11,6 @@ azure-mgmt-applicationinsights
 azure-mgmt-monitor
 ansible
 azure-mgmt-network
-psycopg2
+psycopg2-binary
 requests
 azure-mgmt-containerinstance

@@ -3,9 +3,9 @@ from .app_services.app_service_plan import AppServicePlan
 from .rdbms.postgresql_service import PostgreSQLService
 from .storage_services.storage_account import StorageAccount
 from .service_bus.service_bus import ServiceBus
-from .loggerdb.loggerdb import LoggerDB
 from .keyvault.keyvault import KeyVault
 from .app_services.diagnostic_settings import  DiagnosticSettings
 from .loganalytics.loganalytics import LogAnalytics
 from .app_services.app_service_parameters import AppServiceParameters
 from .vnet.vnet import VirtualNetworks
+from .container_instances.container_instances import ContainerInstaces
