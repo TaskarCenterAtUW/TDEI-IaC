@@ -1,7 +1,7 @@
 import json
 import os
 from azure.mgmt.rdbms.postgresql_flexibleservers import PostgreSQLManagementClient
-from azure.mgmt.rdbms.postgresql_flexibleservers.models import Server, Sku, Storage, Database
+from azure.mgmt.rdbms.postgresql_flexibleservers.models import Server, Sku, Storage, Database, HighAvailability, Backup
 from infra.keyvault.keyvault import KeyVault
 import psycopg2
 import requests
@@ -51,7 +51,7 @@ class PostgreSQLService:
             version=postgresql_config['version'],
             create_mode=postgresql_config['create_mode'],
             location=location,
-            high_availability=HighAvailability(mode=postgresql_config['highAvailability']['mode']),
+            #high_availability=HighAvailability(mode=postgresql_config['highAvailability']['mode']), # not available for Burstable
             backup=Backup(backup_retention_days=postgresql_config['backup']['backupRetentionDays'], geo_redundant_backup=postgresql_config['backup']['geoRedundantBackup'])
         )
 
