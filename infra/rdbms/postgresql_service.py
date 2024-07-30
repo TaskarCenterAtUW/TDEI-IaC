@@ -47,10 +47,12 @@ class PostgreSQLService:
                     tier=postgresql_config['sku']['tier']),
             administrator_login=postgresql_config['secrets']['administrator_login'],
             administrator_login_password=postgresql_config['secrets']['administrator_login_password'],
-            storage=Storage(storage_size_gb=postgresql_config['size']),
+            storage=Storage(storage_size_gb=postgresql_config['storage']['storageSizeGB'], auto_grow=postgresql_config['storage']['autoGrow'], tier=postgresql_config['storage']['tier']),
             version=postgresql_config['version'],
             create_mode=postgresql_config['create_mode'],
-            location=location
+            location=location,
+            high_availability=HighAvailability(mode=postgresql_config['highAvailability']['mode']),
+            backup=Backup(backup_retention_days=postgresql_config['backup']['backupRetentionDays'], geo_redundant_backup=postgresql_config['backup']['geoRedundantBackup'])
         )
 
         # Provision PostgreSQL Flexible instance

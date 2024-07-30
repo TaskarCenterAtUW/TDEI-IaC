@@ -8,7 +8,10 @@
         "name": "Standard_B2s",
         "tier": "Burstable"
     },
-    "size" : 32,
+    "availabilityZone": "1",
+    "backup": {"backupRetentionDays": 7, "geoRedundantBackup": "Disabled"},
+    "highAvailability": {"mode": "ZoneRedundant"},
+    "storage": {"autoGrow": "Disabled", "storageSizeGB": 32, "tier": "P10"},
     "version" : 14,
     "create_mode" : "Create",
     "database" : [
