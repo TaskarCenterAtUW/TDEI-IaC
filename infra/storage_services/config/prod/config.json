@@ -1,6 +1,7 @@
 {
     "tdei" : {
-        "sku" : "Standard_LRS",
+        "sku" : "Standard_GRS",
+        "kind": "StorageV2",
         "containers" : [
             "gtfsflex",
             "gtfspathways",
