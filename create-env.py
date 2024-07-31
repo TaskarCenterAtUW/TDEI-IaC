@@ -5,7 +5,7 @@ from azure.mgmt.resource import ResourceManagementClient
 from azure.mgmt.web import WebSiteManagementClient
 from azure.identity import DefaultAzureCredential
 from infra import KeyVault, VirtualNetworks, ServiceBus, StorageAccount, PostgreSQLService, AppServicePlan, LogAnalytics
-#from infra import StorageAccount, AppService, AppServiceParameters, AppServicePlan, PostgreSQLService, KeyVault
+from infra import AppService, AppServiceParameters, DiagnosticSettings
 #from infra import ServiceBus, LogAnalytics, DiagnosticSettings, VirtualNetworks, ContainerInstaces
 
 
@@ -133,7 +133,7 @@ if __name__ == "__main__":
             environment=environment,
             location=location
         )
-        '''
+        
         # Provision AppServices
         app_service = AppService(web_client, RESOURCE_GROUP_NAME, subscription_id)
         app_service.provision(
@@ -153,7 +153,8 @@ if __name__ == "__main__":
         print("Enabling Diagnostic Settings for App Services ")
         diagSettings = DiagnosticSettings(credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
         diagSettings.enable(config_name=config, environment=environment)
-
+        '''
+        # TODO: Provision Container Instances. Setup the Configuration - Only for PROD now.
         container_instances = ContainerInstaces(
             credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
         container_instances.provision(
@@ -161,6 +162,6 @@ if __name__ == "__main__":
             config_name=config,
             location=location
         )
-
+        
     else:
         show_help()

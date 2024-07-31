@@ -2,12 +2,18 @@
     "tdei-keycloak": {
         "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/keycloak:latest",
-        "health-check-path": "/health/ping",
+        "health-check-path": "/health",
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
+        "appCommandLine": "--http-port=8080 --hostname=tdei-keycloak-stage.azurewebsites.net --hostname-strict-backchannel=false",
         "health-check-http-status": 200,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
             "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}"
+            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+            "PORT":"8080",
+            "WEBSITES_PORT":"8080"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -21,13 +27,15 @@
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/auth-n-z:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
             "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
             "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
             "KEYCLOAK_AUTH_SERVER_URL": "https://{tdei-keycloak-hostname}",
-            "KEYCLOAK_CLIENT_ENDPOINTS_TOKEN_URL" : "https://{tdei-keycloak-hostname}/realms/tdei/protocol/openid-connect/token",
-            "KEYCLOAK_CLIENT_ENDPOINTS_USER_URL" : "https://{tdei-keycloak-hostname}/realms/tdei/protocol/openid-connect/userinfo",
+            "KEYCLOAK_CLIENT_ENDPOINTS_BASE_URL" : "https://{tdei-keycloak-hostname}/realms/tdei/protocol/openid-connect",
             "KEYCLOAK_CREDENTIALS_SECRET": "i09SUsZLmoKYWi2GJw46bv06bc7T1B4g",
             "SPRING_APPLICATION_SECRET" : "asdfSFS34wfsdfsdfSDSD32dfsddDDerQSNCK34SOWEK5354fdgdf4",
             "SPRING_APPLICATION_SECRET_TTL": "60",
@@ -47,6 +55,9 @@
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gateway:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
             "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
@@ -61,32 +72,37 @@
             "enabled": true
         }
     },
-    "tdei-osw-datasvc" : {
+    "tdei-datasvc" : {
         "app-service-plan": "TDEI-3",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-datasvc-ts:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
             "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
             "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "EVENT_BUS_CONNECTION" : "{service-bus-connection-string}",
             "QUEUECONNECTION": "{service-bus-connection-string}",
             "STORAGECONNECTION": "{storage-connection-string}",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
+            "PORT":"8080",
+            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}",
+            "USER_MANAGEMENT_HOST": "https://{tdei-usermanagement-hostname}",
+            "POSTGRES_DB": "tdei",
             "POSTGRES_USER": "{postgresql-administrator-login}",
             "POSTGRES_HOST": "{tdei-postgresql-hostname}",
             "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
             "POSTGRES_PORT": "5432",
             "SSL": "TRUE",
-            "DATASVC_TOPIC": "osw-data-service",
-            "VALIDATION_SUBSCRIPTION": "osw-validation-result",
-            "VALIDATION_TOPIC": "osw-validation",
-            "UPLOAD_TOPIC": "osw-upload"
+            "GATEWAY_URL":"https://{tdei-gateway-hostname}",
+            "DOCUMENTATION_URL": "https://github.com/OpenSidewalks/OpenSidewalks-Schema/blob/Audiom/README.md",
+            "SCHEMA_URL": "https://github.com/OpenSidewalks/OpenSidewalks-Schema/blob/Audiom/opensidewalks.schema.json",
+            "PROVIDER": "Azure"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "template-osw-datasvc-ts-console.logs",
+            "name": "datasvc-console.logs",
             "category":"AppServiceConsoleLogs",
             "enabled": true
         }
@@ -96,20 +112,14 @@
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/user-management-front-end:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
             "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
             "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION":"{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "AUTH_SERVICE_BASE_URL" : "https://{tdei-auth-n-z-hostname}/api/v1",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "SERVICE_URL": "https://{tdei-usermanagement-hostname}/api/v1/service",
-            "POSTGRES_USER": "{postgresql-administrator-login}",
-            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
-            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "POSTGRES_PORT": "5432",
-            "NODE_ENV" : "development"
+            "REACT_APP_URL": "https://{tdei-usermanagement-ts-hostname}/api/v1"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -123,6 +133,9 @@
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/usermanagement-ts:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
             "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
@@ -134,10 +147,7 @@
             "POSTGRES_USER": "{postgresql-administrator-login}",
             "POSTGRES_HOST": "{tdei-postgresql-hostname}",
             "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "POSTGRES_PORT": "5432",
-            "DATASVC_TOPIC": "gtfs-flex-data-service",
-            "VALIDATION_SUBSCRIPTION": "gtfs-flex-validation-result",
-            "VALIDATION_TOPIC": "gtfs-flex-validation"
+            "POSTGRES_PORT": "5432"
         },
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -151,6 +161,9 @@
         "linux-fx-version": "DOCKER|https://index.docker.io/v1/swaggerapi/swagger-ui:latest",
         "health-check-path": "/health/ping",
         "health-check-http-status": 200,
+        "always-on": true,
+        "vnet-enabled":true,
+        "publicNetworkAccess": null,
         "application-parameters": {
             "DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io/v1",
             "QUERY_CONFIG_ENABLED": true,
