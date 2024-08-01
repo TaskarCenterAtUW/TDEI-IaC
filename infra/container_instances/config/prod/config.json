@@ -94,14 +94,14 @@
           "ports": [8080],
           "secrets": {
             "QUEUECONNECTION": "service-bus-connection-string",
-            "STORAGECONNECTION": "storage-connection-string"
+            "STORAGECONNECTION": "storage-connection-string",
+            "OSM_PASSWORD": "osm-password",
+            "OSM_USERNAME": "osm-username"
           },
           "environment_variables": {
             "CONFIDENCE_REQ_SUB": "request-handler",
             "CONFIDENCE_REQ_TOPIC": "osw-confidence-request",
             "CONFIDENCE_RES_TOPIC": "osw-confidence-response",
-            "OSM_PASSWORD": "R@lling#1",
-            "OSM_USERNAME": "sujatam@gaussiansolutions.com",
             "AUTH_PERMISSION_URL": "https://tdei-auth-n-z-prod.azurewebsites.net"
           }
         }
