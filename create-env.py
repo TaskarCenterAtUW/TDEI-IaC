@@ -7,6 +7,7 @@ from azure.identity import DefaultAzureCredential
 from infra import KeyVault, VirtualNetworks, ServiceBus, StorageAccount, PostgreSQLService, AppServicePlan, LogAnalytics
 from infra import AppService, AppServiceParameters, DiagnosticSettings
 #from infra import ServiceBus, LogAnalytics, DiagnosticSettings, VirtualNetworks, ContainerInstaces
+from infra import ContainerInstaces
 
 
 def show_help():
@@ -75,9 +76,11 @@ if __name__ == "__main__":
         # Create Keyvault to store credentials and application parameters needed by AppServices
         KeyVault.initialize(credential, RESOURCE_GROUP_NAME, environment)
 
-        '''
+        
         # Set secrets in KeyVault
         KeyVault.store_secrets(config_name=config)
+
+        '''
         
         # Provision Virtual Network
         virtual_network = VirtualNetworks(

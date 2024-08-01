@@ -1,34 +1,50 @@
 [
-    {
-        "plan-name": "TDEI-1",
-        "sku": {
-            "name": "B3",
-            "tier": "BASIC"
-        },
-        "reserved" : true
+  {
+    "plan-name": "TDEI-1",
+    "sku": {
+      "name": "B3",
+      "tier": "BASIC"
     },
-    {
-        "plan-name": "TDEI-2",
-        "sku": {
-            "name": "P2V3",
-            "tier": "PREMIUMV3"
-        },
-        "reserved" : true
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-2",
+    "sku": {
+      "name": "P2V3",
+      "tier": "PREMIUMV3"
     },
-    {
-        "plan-name": "TDEI-3",
-        "sku": {
-            "name": "P2V3",
-            "tier": "PREMIUMV3"
-        },
-        "reserved" : true
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-3",
+    "sku": {
+      "name": "P2V3",
+      "tier": "PREMIUMV3"
     },
-    {
-        "plan-name": "TDEI-4",
-        "sku": {
-            "name": "B3",
-            "tier": "BASIC"
-        },
-        "reserved" : true
-    }
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-4",
+    "sku": {
+      "name": "B3",
+      "tier": "BASIC"
+    },
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-5",
+    "sku": {
+      "name": "P1V3",
+      "tier": "PREMIUMV3"
+    },
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-6",
+    "sku": {
+      "name": "P3V3",
+      "tier": "PREMIUMV3"
+    },
+    "reserved": true
+  }
 ]
