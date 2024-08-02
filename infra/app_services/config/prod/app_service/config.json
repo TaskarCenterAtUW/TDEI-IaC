@@ -193,6 +193,7 @@
       "QUEUECONNECTION": "{service-bus-connection-string}",
       "STORAGECONNECTION": "{storage-connection-string}",
       "PROVIDER": "Azure",
+      "PORT": "8080",
       "POSTGRES_USER": "{postgresql-administrator-login}",
       "POSTGRES_HOST": "{tdei-postgresql-hostname}",
       "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
@@ -231,7 +232,8 @@
       "POSTGRES_DB": "tdei",
       "POSTGRES_PORT": "5432",
       "EXTRACT_LOAD_RESPONSE_TOPIC": "extract-load-response",
-      "AUTH_HOST": "https://{tdei-auth-n-z-hostname}"
+      "AUTH_HOST": "https://{tdei-auth-n-z-hostname}",
+      "BULK_INSERT_BATCH_SIZE": "1000"
     },
     "diagnostic-settings": {
       "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -256,10 +258,12 @@
       "EVENT_BUS_CONNECTION": "{service-bus-connection-string}",
       "QUEUECONNECTION": "{service-bus-connection-string}",
       "STORAGECONNECTION": "{storage-connection-string}",
-      "UPLOAD_SUBSCRIPTION": "upload-validation-processor",
-      "UPLOAD_TOPIC": "gtfs-flex-upload",
-      "VALIDATION_TOPIC": "gtfs-flex-validation",
-      "PROVIDER": "Azure"
+      "PROVIDER": "Azure",
+      "REQUEST_TOPIC": "flex-validation-request",
+      "RESPONSE_TOPIC": "flex-validation-response",
+      "PORT" :"8080",
+      "REQUEST_SUBSCRIPTION":"request-handler",
+      "CONTAINER_NAME":"gtfsflex"
     },
     "diagnostic-settings": {
       "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -283,9 +287,12 @@
       "QUEUECONNECTION": "{service-bus-connection-string}",
       "STORAGECONNECTION": "{storage-connection-string}",
       "PROVIDER": "Azure",
-      "CONFIDENCE_REQ_SUB": "osw-confidence-requested-sub",
-      "CONFIDENCE_REQ_TOPIC": "osw-confidence-requested",
-      "CONFIDENCE_RES_TOPIC": "osw-confidence-calculated"
+      "CONFIDENCE_REQ_SUB": "request-handler",
+      "CONFIDENCE_REQ_TOPIC": "osw-confidence-request",
+      "CONFIDENCE_RES_TOPIC": "osw-confidence-response",
+      "AUTH_PERMISSION_URL": "https://{tdei-auth-n-z-hostname}",
+      "OSM_USERNAME": "{osm-username}",
+      "OSM_PASSWORD": "{osm-password}"
     },
     "diagnostic-settings": {
       "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -311,11 +318,10 @@
       "AUTH_PERMISSION_URL": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
       "CONTAINER_NAME": "osw",
       "APPLICATION_PORT": "8080",
-      "EVENT_BUS_CONNECTION": "{service-bus-connection-string}",
-      "VALIDATION_TOPIC": "osw-validation",
-      "UPLOAD_SUBSCRIPTION": "upload-validation-processor",
-      "UPLOAD_TOPIC": "osw-upload",
-      "PROVIDER": "Azure"
+      "PROVIDER": "Azure",
+      "VALIDATION_REQ_TOPIC": "osw-validation-request",
+      "VALIDATION_REQ_SUB": "request-handler",
+      "VALIDATION_RES_TOPIC": "osw-validation-response"
     },
     "diagnostic-settings": {
       "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -338,14 +344,13 @@
       "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
       "AUTH_PERMISSION_URL": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
       "CONTAINER_NAME": "gtfspathways",
-      "EventBusConnection": "{service-bus-connection-string}",
       "PORT": "8080",
       "PROVIDER": "Azure",
       "QUEUECONNECTION": "{service-bus-connection-string}",
       "STORAGECONNECTION": "{storage-connection-string}",
-      "UPLOAD_SUBSCRIPTION": "upload-validation-processor",
-      "UPLOAD_TOPIC": "gtfs-pathways-upload",
-      "VALIDATION_TOPIC": "gtfs-pathways-validation"
+      "REQUEST_SUBSCRIPTION": "request-handler",
+      "REQUEST_TOPIC": "pathways-validation-request",
+      "RESPONSE_TOPIC": "pathways-validation-response"
     },
     "diagnostic-settings": {
       "workspace_id": "{tdei-loganalytics-workspace-id}",
