@@ -211,7 +211,7 @@
     }
   },
   "extract-load-service": {
-    "app-service-plan": "TDEI-3",
+    "app-service-plan": "TDEI-10",
     "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/extract-load-service:latest",
     "always-on": false,
     "vnet-enabled": false,
@@ -243,7 +243,7 @@
     }
   },
   "tdei-gtfs-flex-validation": {
-    "app-service-plan": "TDEI-5",
+    "app-service-plan": "TDEI-8",
     "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-flex-validation:latest",
     "always-on": false,
     "vnet-enabled": false,
@@ -261,9 +261,9 @@
       "PROVIDER": "Azure",
       "REQUEST_TOPIC": "flex-validation-request",
       "RESPONSE_TOPIC": "flex-validation-response",
-      "PORT" :"8080",
-      "REQUEST_SUBSCRIPTION":"request-handler",
-      "CONTAINER_NAME":"gtfsflex"
+      "PORT": "8080",
+      "REQUEST_SUBSCRIPTION": "request-handler",
+      "CONTAINER_NAME": "gtfsflex"
     },
     "diagnostic-settings": {
       "workspace_id": "{tdei-loganalytics-workspace-id}",
@@ -273,7 +273,7 @@
     }
   },
   "tdei-osw-confidence-metric": {
-    "app-service-plan": "TDEI-3",
+    "app-service-plan": "TDEI-11",
     "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-confidence-metric:latest",
     "always-on": false,
     "vnet-enabled": false,
@@ -302,7 +302,7 @@
     }
   },
   "tdei-osw-validation": {
-    "app-service-plan": "TDEI-3",
+    "app-service-plan": "TDEI-12",
     "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-validation:latest",
     "always-on": false,
     "vnet-enabled": false,
@@ -331,7 +331,7 @@
     }
   },
   "tdei-gtfs-pathways-validation": {
-    "app-service-plan": "TDEI-5",
+    "app-service-plan": "TDEI-9",
     "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-pathways-validation:latest",
     "always-on": false,
     "vnet-enabled": false,
@@ -386,7 +386,7 @@
     }
   },
   "tdei-osw-quality-metric": {
-    "app-service-plan": "TDEI-6",
+    "app-service-plan": "TDEI-7",
     "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-osw-quality-metric:latest",
     "always-on": false,
     "vnet-enabled": false,
