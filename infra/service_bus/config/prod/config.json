@@ -451,6 +451,6 @@
         }
     ],
     "tags": {
-        "env": "stage"
+        "env": "production"
     }
 }
