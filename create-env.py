@@ -6,7 +6,6 @@ from azure.mgmt.web import WebSiteManagementClient
 from azure.identity import DefaultAzureCredential
 from infra import KeyVault, VirtualNetworks, ServiceBus, StorageAccount, PostgreSQLService, AppServicePlan, LogAnalytics
 from infra import AppService, AppServiceParameters, DiagnosticSettings
-#from infra import ServiceBus, LogAnalytics, DiagnosticSettings, VirtualNetworks, ContainerInstaces
 from infra import ContainerInstaces
 
 
@@ -79,10 +78,10 @@ if __name__ == "__main__":
         
         # Set secrets in KeyVault
         KeyVault.store_secrets(config_name=config)
-
-        '''
         
         # Provision Virtual Network
+        print("Provisioning Virtual Network....")
+        
         virtual_network = VirtualNetworks(
             subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME, credential=credential)
         virtual_network.provision(
@@ -90,8 +89,11 @@ if __name__ == "__main__":
             location=location,
             environment=environment
         )
+
         
         #Provision PostgreSQL Flexible Server
+        print("Provisioning PostgreSQL Flexible Server..")
+
         postgresql_service = PostgreSQLService(
             credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
         postgresql_service.provision(
@@ -101,6 +103,8 @@ if __name__ == "__main__":
         )
         
         # Provision Storage Account
+        print("Provisioning Storage Account..")
+
         storage_account = StorageAccount(
             subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME, credential=credential)
         storage_account.provision(
@@ -108,8 +112,10 @@ if __name__ == "__main__":
             environment=environment,
             location=location
         )
-
+        
         # Provision Service Bus and Queues
+        print("Provisioning Service Bus and Queues..")
+
         service_bus = ServiceBus(
             credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
         service_bus.provision(
@@ -118,16 +124,20 @@ if __name__ == "__main__":
             location=location
         )
         print("service bus: provisioned")
-
+        
         # Provision Log Analytics workspace and Application Insights
+        print("Provisioning Log Analytics Workspace..")
+
         logAnalytics = LogAnalytics(credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
         logAnalytics.provision(
             config_name=config,
             location=location
         )
         print("Log analytics Workspace: provisioned")
-
+        
         # Provision AppServicePlan
+        print("Provisioning App Service Plans..")
+
         app_service_plan = AppServicePlan(web_client)
         print("Provisioning AppService Plan..")
         app_service_plan.provision(
@@ -138,6 +148,8 @@ if __name__ == "__main__":
         )
         
         # Provision AppServices
+        print("Provisioning App Services..")
+
         app_service = AppService(web_client, RESOURCE_GROUP_NAME, subscription_id)
         app_service.provision(
             config_name=config,
@@ -157,7 +169,7 @@ if __name__ == "__main__":
         diagSettings = DiagnosticSettings(credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
         diagSettings.enable(config_name=config, environment=environment)
         '''
-        # TODO: Provision Container Instances. Setup the Configuration - Only for PROD now.
+        # CODE IN PLACE IN CASE THERE IS A NEED FOR CONTAINER INSTANCES IN THE FUTURE
         container_instances = ContainerInstaces(
             credential=credential, subscription_id=subscription_id, resource_group=RESOURCE_GROUP_NAME)
         container_instances.provision(
@@ -165,6 +177,6 @@ if __name__ == "__main__":
             config_name=config,
             location=location
         )
-        
+        '''
     else:
         show_help()
