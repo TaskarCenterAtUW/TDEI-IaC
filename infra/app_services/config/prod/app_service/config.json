@@ -52,7 +52,7 @@
   },
   "tdei-gateway": {
     "app-service-plan": "TDEI-1",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gateway:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gateway:prodlatest",
     "health-check-path": "/health/ping",
     "health-check-http-status": 200,
     "always-on": true,
@@ -74,7 +74,7 @@
   },
   "tdei-datasvc": {
     "app-service-plan": "TDEI-3",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-datasvc-ts:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-datasvc-ts:prodlatest",
     "health-check-path": "/health/ping",
     "health-check-http-status": 200,
     "always-on": true,
@@ -109,7 +109,7 @@
   },
   "tdei-usermanagement-front-end": {
     "app-service-plan": "TDEI-4",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/user-management-front-end:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/user-management-front-end:prodlatest",
     "health-check-path": "/health/ping",
     "health-check-http-status": 200,
     "always-on": true,
@@ -135,7 +135,7 @@
     "health-check-http-status": 200,
     "always-on": true,
     "vnet-enabled": true,
-    "publicNetworkAccess": null,
+    "publicNetworkAccess": "Enabled",
     "application-parameters": {
       "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
       "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
@@ -160,7 +160,7 @@
   },
   "tdei-api-gateway-spec": {
     "app-service-plan": "TDEI-1",
-    "linux-fx-version": "DOCKER|https://index.docker.io/v1/swaggerapi/swagger-ui:latest",
+    "linux-fx-version": "DOCKER|https://index.docker.io/v1/swaggerapi/swagger-ui:prodlatest",
     "health-check-path": "/health/ping",
     "health-check-http-status": 200,
     "always-on": true,
@@ -182,7 +182,7 @@
   },
   "tdei-backend-service": {
     "app-service-plan": "TDEI-5",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/backend-service:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/backend-service:prodlatest",
     "always-on": false,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
@@ -214,7 +214,7 @@
   },
   "extract-load-service": {
     "app-service-plan": "TDEI-10",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/extract-load-service:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/extract-load-service:prodlatest",
     "always-on": false,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
@@ -246,7 +246,7 @@
   },
   "tdei-gtfs-flex-validation": {
     "app-service-plan": "TDEI-8",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-flex-validation:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-flex-validation:prodlatest",
     "always-on": false,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
@@ -274,7 +274,7 @@
   },
   "tdei-osw-confidence-metric": {
     "app-service-plan": "TDEI-11",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-confidence-metric:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-confidence-metric:prodlatest",
     "always-on": false,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
@@ -303,7 +303,7 @@
   },
   "tdei-osw-validation": {
     "app-service-plan": "TDEI-12",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-validation:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-validation:prodlatest",
     "always-on": false,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
@@ -332,7 +332,7 @@
   },
   "tdei-gtfs-pathways-validation": {
     "app-service-plan": "TDEI-9",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-pathways-validation:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-pathways-validation:prodlatest",
     "always-on": false,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
@@ -360,7 +360,7 @@
   },
   "tdei-osw-formatter": {
     "app-service-plan": "TDEI-6",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-formatter:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-formatter:prodlatest",
     "always-on": false,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
@@ -386,7 +386,7 @@
   },
   "tdei-osw-quality-metric": {
     "app-service-plan": "TDEI-7",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-quality-metric:latest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-quality-metric:prodlatest",
     "always-on": false,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
