@@ -26,7 +26,7 @@ class AppService:
 
         for microservice in microservices_config:
             microservice_name = microservice + "-" + environment
-
+            
             # Fetch the AppServicePlan Id
             app_service_plan = self.web_client.app_service_plans.get(
                 self.resource_group,
@@ -86,15 +86,24 @@ class AppService:
                     print(result)
                 else:
                     print('Failed to create CORS')
-
+            
             if microservices_config[microservice]['vnet-enabled'] is True:
                 # Provisioning Private Endpoint Connection
                 pe_command = 'az network private-endpoint create --resource-group ' + self.resource_group + ' --name ' + microservice_name + '-pe --vnet-name ' + 'TDEI-' + environment + '-VNET --subnet TDEI-pe-subnet --private-connection-resource-id ' + web_app_result.id + ' --connection-name ' + microservice_name + 'plsc --group-id sites'
+                #pe_command = 'az network private-endpoint create --resource-group ' + self.resource_group + ' --name ' + microservice_name + '-pe --vnet-name ' + 'TDEI-' + environment + '-VNET --subnet TDEI-pe-subnet --private-connection-resource-id /subscriptions/61a3b0f8-bf9b-4f99-89fa-f18c203c6086/resourceGroups/GaussianRG-prod/providers/Microsoft.Web/sites/' + microservice_name + ' --connection-name ' + microservice_name + 'plsc --group-id sites'
                 print(pe_command)
                 return_code, result = self.__execute_command(pe_command)
                 if return_code == 0:
                     print(result)
                 else:
                     print('Failed to create private endpoint')
+                
+                dns_command = 'az network private-endpoint dns-zone-group create --resource-group ' + self.resource_group + ' --endpoint-name ' + microservice_name + '-pe --name ' + microservice_name + '-dnsgroup --private-dns-zone privatelink.azurewebsites.net --zone-name privatelink.azurewebsites.net'
+                print(dns_command)
+                return_code, result = self.__execute_command(dns_command)
+                if return_code == 0:
+                    print(result)
+                else:
+                    print('Failed to create Private DNS Entry')
 
 
