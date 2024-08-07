@@ -71,7 +71,7 @@ if __name__ == "__main__":
             f"Provisioned resource group {rg_result.name} in the \
         {rg_result.location} region"
         )
-
+        
         # Create Keyvault to store credentials and application parameters needed by AppServices
         KeyVault.initialize(credential, RESOURCE_GROUP_NAME, environment)
 
@@ -149,14 +149,14 @@ if __name__ == "__main__":
         
         # Provision AppServices
         print("Provisioning App Services..")
-
+        
         app_service = AppService(web_client, RESOURCE_GROUP_NAME, subscription_id)
         app_service.provision(
             config_name=config,
             environment=environment,
             location=location
         )
-
+        
         # Set AppServices Application Parameters
         app_service_params = AppServiceParameters(web_client, RESOURCE_GROUP_NAME)
         app_service_params.update_configuration(
