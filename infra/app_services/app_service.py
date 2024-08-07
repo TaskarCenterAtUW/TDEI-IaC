@@ -97,4 +97,12 @@ class AppService:
                 else:
                     print('Failed to create private endpoint')
 
+                dns_command = 'az network private-endpoint dns-zone-group create --resource-group ' + self.resource_group + ' --endpoint-name ' + microservice_name + '-pe --name ' + microservice_name + '-dnsgroup --private-dns-zone privatelink.azurewebsites.net --zone-name privatelink.azurewebsites.net'
+                print(dns_command)
+                return_code, result = self.__execute_command(dns_command)
+                if return_code == 0:
+                    print(result)
+                else:
+                    print('Failed to create Private DNS Entry')
+
 
