@@ -1,382 +1,407 @@
 {
-    "tdei-keycloak": {
-        "app-service-plan": "TDEI-1",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/keycloak:stage-latest",
-        "always-on": true,
-        "vnet-enabled": true,
-        "publicNetworkAccess": null,
-        "health-check-path": "/health",
-        "appCommandLine": "--http-port=8080 --hostname=tdei-keycloak-stage.azurewebsites.net --hostname-strict-backchannel=false",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "PORT": 8080,
-            "WEBSITES_PORT": 8080
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "keycloak-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
+  "tdei-keycloak": {
+    "app-service-plan": "TDEI-1",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/keycloak:stage-latest",
+    "always-on": true,
+    "vnet-enabled": true,
+    "publicNetworkAccess": null,
+    "health-check-path": "/health",
+    "appCommandLine": "--http-port=8080 --hostname=tdei-keycloak-stage.azurewebsites.net --hostname-strict-backchannel=false",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "PORT": 8080,
+      "WEBSITES_PORT": 8080
     },
-    "tdei-auth-n-z": {
-        "app-service-plan": "TDEI-2",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/auth-n-z:stage-latest",
-        "always-on": true,
-        "vnet-enabled": true,
-        "publicNetworkAccess": "Disabled",
-        "health-check-path": "/health",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "KEYCLOAK_AUTH_SERVER_URL": "https://{tdei-keycloak-hostname}",
-            "KEYCLOAK_CLIENT_ENDPOINTS_BASE_URL": "https://{tdei-keycloak-hostname}/realms/tdei/protocol/openid-connect",
-            "KEYCLOAK_CREDENTIALS_SECRET": "i09SUsZLmoKYWi2GJw46bv06bc7T1B4g",
-            "SPRING_APPLICATION_SECRET": "asdfSFS34wfsdfsdfSDSD32dfsddDDerQSNCK34SOWEK5354fdgdf4",
-            "SPRING_APPLICATION_SECRET_TTL": "60",
-            "SPRING_DATASOURCE_USERNAME": "{postgresql-administrator-login}",
-            "SPRING_DATASOURCE_PASSWORD": "{postgresql-administrator-password}",
-            "SPRING_DATASOURCE_URL": "jdbc:postgresql://{tdei-postgresql-hostname}:5432/tdei",
-            "SPRING_PROFILES_ACTIVE": "stage"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "authnz-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-gateway": {
-        "app-service-plan": "TDEI-1",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gateway:stage-latest",
-        "always-on": true,
-        "vnet-enabled": true,
-        "publicNetworkAccess": null,
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "WEBSITE_HEALTHCHECK_MAXPINGFAILURES": 10,
-            "WEBSITES_ENABLE_APP_SERVICE_STORAGE": false
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "gateway-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        },
-        "cors-settings": {
-            "allowed-origins": "*"
-        }
-    },
-    "tdei-osw-validation": {
-        "app-service-plan": "TDEI-4",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-validation:stage-latest",
-        "always-on": true,
-        "vnet-enabled": true,
-        "publicNetworkAccess": "Disabled",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "PORT": "8080",
-            "CONTAINER_NAME": "osw",
-            "APPLICATION_PORT": "8080",
-            "PROVIDER": "Azure",
-            "AUTH_PERMISSION_URL": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
-            "VALIDATION_REQ_TOPIC": "osw-validation-request",
-            "VALIDATION_REQ_SUB": "request-handler",
-            "VALIDATION_RES_TOPIC": "osw-validation-response"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "osw-validation-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-gtfs-pathways-validation": {
-        "app-service-plan": "TDEI-2",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-pathways-validation:stage-latest",
-        "always-on": true,
-        "vnet-enabled": true,
-        "publicNetworkAccess": "Disabled",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "CONTAINER_NAME": "gtfspathways",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "REQUEST_SUBSCRIPTION": "request-handler",
-            "REQUEST_TOPIC": "pathways-validation-request",
-            "RESPONSE_TOPIC": "pathways-validation-response"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "pathways-validation-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-gtfs-flex-validation": {
-        "app-service-plan": "TDEI-3",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-flex-validation:stage-latest",
-        "always-on": true,
-        "vnet-enabled": true,
-        "publicNetworkAccess": "Disabled",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "UPLOAD_SUBSCRIPTION": "upload-validation-processor",
-            "UPLOAD_TOPIC": "gtfs-flex-upload",
-            "VALIDATION_TOPIC": "gtfs-flex-validation"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "gtfs-flex-validation-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-osw-datasvc": {
-        "app-service-plan": "TDEI-4",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-datasvc-ts:stage-latest",
-        "always-on": true,
-        "vnet-enabled": true,
-        "publicNetworkAccess": "Disabled",
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}",
-            "POSTGRES_USER": "{postgresql-administrator-login}",
-            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
-            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "POSTGRES_DB": "tdei",
-            "POSTGRES_PORT": "5432",
-            "SSL": "TRUE",
-            "USER_MANAGEMENT_HOST": "https://{tdei-usermanagement-ts-hostname}",
-            "GATEWAY_URL": "https://{tdei-gateway-hostname}",
-            "DOCUMENTATION_URL": "https://github.com/OpenSidewalks/OpenSidewalks-Schema/blob/Audiom/README.md",
-            "SCHEMA_URL": "https://github.com/OpenSidewalks/OpenSidewalks-Schema/blob/Audiom/opensidewalks.schema.json",
-            "PROVIDER": "Azure"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "template-osw-datasvc-ts-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-usermanagement-front-end": {
-        "app-service-plan": "TDEI-5",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/user-management-front-end:stage-latest",
-        "always-on": true,
-        "vnet-enabled": false,
-        "publicNetworkAccess": null,
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "25Q63O57UIAahRmqGxLq=sWkWtLHHtIO",
-            "DOCKER_REGISTRY_SERVER_URL": "https://tdeidocker.azurecr.io",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "tdeidocker",
-            "REACT_APP_URL": "https://{tdei-usermanagement-ts-hostname}/api/v1"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "usermanagement-front-end-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-usermanagement": {
-        "app-service-plan": "TDEI-5",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/usermanagement-ts:stage-latest",
-        "always-on": true,
-        "vnet-enabled": true,
-        "publicNetworkAccess": null,
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "PORT": "8080",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}",
-            "DATABASE_USER": "{postgresql-administrator-login}",
-            "DATABASE_HOST": "{tdei-postgresql-hostname}",
-            "DATABASE_PASSWORD": "{postgresql-administrator-password}",
-            "DATABASE_PORT": "5432",
-            "DATABASE_DB": "tdei",
-            "SSL": "TRUE"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "usermanagement-ts-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        },
-        "cors-settings": {
-            "allowed-origins": "https://{tdei-usermanagement-front-end-hostname}"
-        }
-    },
-    "tdei-api-gateway-spec": {
-        "app-service-plan": "TDEI-4",
-        "linux-fx-version": "DOCKER|swaggerapi/swagger-ui:latest",
-        "always-on": true,
-        "vnet-enabled": true,
-        "publicNetworkAccess": null,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io/v1",
-            "QUERY_CONFIG_ENABLED": true,
-            "URL": "https://raw.githubusercontent.com/TaskarCenterAtUW/TDEI-ExternalAPIs/stage/tdei-api-gateway-stage.json",
-            "WEBSITE_HEALTHCHECK_MAXPINGFAILURES": 10,
-            "WEBSITES_ENABLE_APP_SERVICE_STORAGE": false
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "api-gateway-spec-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-osw-confidence-metric": {
-        "app-service-plan": "TDEI-4",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-confidence-metric:stage-latest",
-        "always-on": true,
-        "vnet-enabled": true,
-        "publicNetworkAccess": "Disabled",
-        "health-check-path": "/health",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "PROVIDER": "Azure",
-            "CONFIDENCE_REQ_SUB": "osw-confidence-requested-sub",
-            "CONFIDENCE_REQ_TOPIC": "osw-confidence-requested",
-            "CONFIDENCE_RES_TOPIC": "osw-confidence-calculated"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "osw-confidence-metric-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-osw-formatter": {
-        "app-service-plan": "TDEI-5",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-formatter:stage-latest",
-        "always-on": false,
-        "vnet-enabled": true,
-        "publicNetworkAccess": null,
-        "health-check-path": "/health",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "PROVIDER": "Azure",
-            "FORMATTER_TOPIC": "osw-formatting-request",
-            "FORMATTER_UPLOAD_TOPIC": "osw-formatting-response",
-            "FORMATTER_SUBSCRIPTION": "request-handler"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "osw-formatter-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-backend-service": {
-        "app-service-plan": "TDEI-5",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/backend-service:stage-latest",
-        "always-on": false,
-        "vnet-enabled": true,
-        "publicNetworkAccess": null,
-        "health-check-path": "/health",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "PROVIDER": "Azure",
-            "POSTGRES_USER": "{postgresql-administrator-login}",
-            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
-            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "SSL": "TRUE",
-            "POSTGRES_DB": "tdei",
-            "POSTGRES_PORT": "5432",
-            "BACKEND_RESPONSE_TOPIC": "backend-response",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "backend-service-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "extract-load-service": {
-        "app-service-plan": "TDEI-5",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/extract-load-service:stage-latest",
-        "always-on": false,
-        "vnet-enabled": true,
-        "publicNetworkAccess": null,
-        "health-check-path": "/health",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "PROVIDER": "Azure",
-            "POSTGRES_USER": "{postgresql-administrator-login}",
-            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
-            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "SSL": "TRUE",
-            "POSTGRES_DB": "tdei",
-            "POSTGRES_PORT": "5432",
-            "EXTRACT_LOAD_RESPONSE_TOPIC": "extract-load-response",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "extract-load-service-console.logs",
-            "category": "AppServiceConsoleLogs",
-            "enabled": true
-        }
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "keycloak-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
     }
+  },
+  "tdei-auth-n-z": {
+    "app-service-plan": "TDEI-2",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/auth-n-z:stage-latest",
+    "always-on": true,
+    "vnet-enabled": true,
+    "publicNetworkAccess": "Disabled",
+    "health-check-path": "/health",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "KEYCLOAK_AUTH_SERVER_URL": "https://{tdei-keycloak-hostname}",
+      "KEYCLOAK_CLIENT_ENDPOINTS_BASE_URL": "https://{tdei-keycloak-hostname}/realms/tdei/protocol/openid-connect",
+      "KEYCLOAK_CREDENTIALS_SECRET": "i09SUsZLmoKYWi2GJw46bv06bc7T1B4g",
+      "SPRING_APPLICATION_SECRET": "asdfSFS34wfsdfsdfSDSD32dfsddDDerQSNCK34SOWEK5354fdgdf4",
+      "SPRING_APPLICATION_SECRET_TTL": "60",
+      "SPRING_DATASOURCE_USERNAME": "{postgresql-administrator-login}",
+      "SPRING_DATASOURCE_PASSWORD": "{postgresql-administrator-password}",
+      "SPRING_DATASOURCE_URL": "jdbc:postgresql://{tdei-postgresql-hostname}:5432/tdei",
+      "SPRING_PROFILES_ACTIVE": "stage"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "authnz-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "tdei-gateway": {
+    "app-service-plan": "TDEI-1",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gateway:stage-latest",
+    "always-on": true,
+    "vnet-enabled": true,
+    "publicNetworkAccess": null,
+    "health-check-path": "/health/ping",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "WEBSITE_HEALTHCHECK_MAXPINGFAILURES": 10,
+      "WEBSITES_ENABLE_APP_SERVICE_STORAGE": false
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "gateway-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    },
+    "cors-settings": {
+      "allowed-origins": "*"
+    }
+  },
+  "tdei-osw-validation": {
+    "app-service-plan": "TDEI-4",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-validation:stage-latest",
+    "always-on": true,
+    "vnet-enabled": true,
+    "publicNetworkAccess": "Disabled",
+    "health-check-path": "/health/ping",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "QUEUECONNECTION": "{service-bus-connection-string}",
+      "STORAGECONNECTION": "{storage-connection-string}",
+      "PORT": "8080",
+      "CONTAINER_NAME": "osw",
+      "APPLICATION_PORT": "8080",
+      "PROVIDER": "Azure",
+      "AUTH_PERMISSION_URL": "https://{tdei-auth-n-z-hostname}/api/v1/hasPermission",
+      "VALIDATION_REQ_TOPIC": "osw-validation-request",
+      "VALIDATION_REQ_SUB": "request-handler",
+      "VALIDATION_RES_TOPIC": "osw-validation-response"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "osw-validation-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "tdei-gtfs-pathways-validation": {
+    "app-service-plan": "TDEI-2",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-pathways-validation:stage-latest",
+    "always-on": true,
+    "vnet-enabled": true,
+    "publicNetworkAccess": "Disabled",
+    "health-check-path": "/health/ping",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "CONTAINER_NAME": "gtfspathways",
+      "QUEUECONNECTION": "{service-bus-connection-string}",
+      "STORAGECONNECTION": "{storage-connection-string}",
+      "REQUEST_SUBSCRIPTION": "request-handler",
+      "REQUEST_TOPIC": "pathways-validation-request",
+      "RESPONSE_TOPIC": "pathways-validation-response"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "pathways-validation-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "tdei-gtfs-flex-validation": {
+    "app-service-plan": "TDEI-3",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-flex-validation:stage-latest",
+    "always-on": true,
+    "vnet-enabled": true,
+    "publicNetworkAccess": "Disabled",
+    "health-check-path": "/health/ping",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "QUEUECONNECTION": "{service-bus-connection-string}",
+      "STORAGECONNECTION": "{storage-connection-string}",
+      "UPLOAD_SUBSCRIPTION": "upload-validation-processor",
+      "UPLOAD_TOPIC": "gtfs-flex-upload",
+      "VALIDATION_TOPIC": "gtfs-flex-validation"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "gtfs-flex-validation-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "tdei-osw-datasvc": {
+    "app-service-plan": "TDEI-4",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-datasvc-ts:stage-latest",
+    "always-on": true,
+    "vnet-enabled": true,
+    "publicNetworkAccess": "Disabled",
+    "health-check-path": "/health/ping",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "QUEUECONNECTION": "{service-bus-connection-string}",
+      "STORAGECONNECTION": "{storage-connection-string}",
+      "AUTH_HOST": "https://{tdei-auth-n-z-hostname}",
+      "POSTGRES_USER": "{postgresql-administrator-login}",
+      "POSTGRES_HOST": "{tdei-postgresql-hostname}",
+      "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
+      "POSTGRES_DB": "tdei",
+      "POSTGRES_PORT": "5432",
+      "SSL": "TRUE",
+      "USER_MANAGEMENT_HOST": "https://{tdei-usermanagement-ts-hostname}",
+      "GATEWAY_URL": "https://{tdei-gateway-hostname}",
+      "DOCUMENTATION_URL": "https://github.com/OpenSidewalks/OpenSidewalks-Schema/blob/Audiom/README.md",
+      "SCHEMA_URL": "https://github.com/OpenSidewalks/OpenSidewalks-Schema/blob/Audiom/opensidewalks.schema.json",
+      "PROVIDER": "Azure"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "template-osw-datasvc-ts-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "tdei-usermanagement-front-end": {
+    "app-service-plan": "TDEI-5",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/user-management-front-end:stage-latest",
+    "always-on": true,
+    "vnet-enabled": false,
+    "publicNetworkAccess": null,
+    "health-check-path": "/health/ping",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "25Q63O57UIAahRmqGxLq=sWkWtLHHtIO",
+      "DOCKER_REGISTRY_SERVER_URL": "https://tdeidocker.azurecr.io",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "tdeidocker",
+      "REACT_APP_URL": "https://{tdei-usermanagement-ts-hostname}/api/v1"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "usermanagement-front-end-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "tdei-usermanagement": {
+    "app-service-plan": "TDEI-5",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/usermanagement-ts:stage-latest",
+    "always-on": true,
+    "vnet-enabled": true,
+    "publicNetworkAccess": null,
+    "health-check-path": "/health/ping",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "QUEUECONNECTION": "{service-bus-connection-string}",
+      "STORAGECONNECTION": "{storage-connection-string}",
+      "PORT": "8080",
+      "AUTH_HOST": "https://{tdei-auth-n-z-hostname}",
+      "DATABASE_USER": "{postgresql-administrator-login}",
+      "DATABASE_HOST": "{tdei-postgresql-hostname}",
+      "DATABASE_PASSWORD": "{postgresql-administrator-password}",
+      "DATABASE_PORT": "5432",
+      "DATABASE_DB": "tdei",
+      "SSL": "TRUE"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "usermanagement-ts-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    },
+    "cors-settings": {
+      "allowed-origins": "https://{tdei-usermanagement-front-end-hostname}"
+    }
+  },
+  "tdei-api-gateway-spec": {
+    "app-service-plan": "TDEI-4",
+    "linux-fx-version": "DOCKER|swaggerapi/swagger-ui:latest",
+    "always-on": true,
+    "vnet-enabled": true,
+    "publicNetworkAccess": null,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io/v1",
+      "QUERY_CONFIG_ENABLED": true,
+      "URL": "https://raw.githubusercontent.com/TaskarCenterAtUW/TDEI-ExternalAPIs/stage/tdei-api-gateway-stage.json",
+      "WEBSITE_HEALTHCHECK_MAXPINGFAILURES": 10,
+      "WEBSITES_ENABLE_APP_SERVICE_STORAGE": false
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "api-gateway-spec-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "tdei-osw-confidence-metric": {
+    "app-service-plan": "TDEI-4",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-confidence-metric:stage-latest",
+    "always-on": true,
+    "vnet-enabled": true,
+    "publicNetworkAccess": "Disabled",
+    "health-check-path": "/health",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "QUEUECONNECTION": "{service-bus-connection-string}",
+      "STORAGECONNECTION": "{storage-connection-string}",
+      "PROVIDER": "Azure",
+      "CONFIDENCE_REQ_SUB": "osw-confidence-requested-sub",
+      "CONFIDENCE_REQ_TOPIC": "osw-confidence-requested",
+      "CONFIDENCE_RES_TOPIC": "osw-confidence-calculated"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "osw-confidence-metric-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "tdei-osw-formatter": {
+    "app-service-plan": "TDEI-7",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-formatter:stage-latest",
+    "always-on": false,
+    "vnet-enabled": true,
+    "publicNetworkAccess": null,
+    "health-check-path": "/health",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "QUEUECONNECTION": "{service-bus-connection-string}",
+      "STORAGECONNECTION": "{storage-connection-string}",
+      "PROVIDER": "Azure",
+      "FORMATTER_TOPIC": "osw-formatting-request",
+      "FORMATTER_UPLOAD_TOPIC": "osw-formatting-response",
+      "FORMATTER_SUBSCRIPTION": "request-handler"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "osw-formatter-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "tdei-backend-service": {
+    "app-service-plan": "TDEI-5",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/backend-service:stage-latest",
+    "always-on": false,
+    "vnet-enabled": true,
+    "publicNetworkAccess": null,
+    "health-check-path": "/health",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "QUEUECONNECTION": "{service-bus-connection-string}",
+      "STORAGECONNECTION": "{storage-connection-string}",
+      "PROVIDER": "Azure",
+      "POSTGRES_USER": "{postgresql-administrator-login}",
+      "POSTGRES_HOST": "{tdei-postgresql-hostname}",
+      "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
+      "SSL": "TRUE",
+      "POSTGRES_DB": "tdei",
+      "POSTGRES_PORT": "5432",
+      "BACKEND_RESPONSE_TOPIC": "backend-response",
+      "AUTH_HOST": "https://{tdei-auth-n-z-hostname}"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "backend-service-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "extract-load-service": {
+    "app-service-plan": "TDEI-5",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/extract-load-service:stage-latest",
+    "always-on": false,
+    "vnet-enabled": true,
+    "publicNetworkAccess": null,
+    "health-check-path": "/health",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "QUEUECONNECTION": "{service-bus-connection-string}",
+      "STORAGECONNECTION": "{storage-connection-string}",
+      "PROVIDER": "Azure",
+      "POSTGRES_USER": "{postgresql-administrator-login}",
+      "POSTGRES_HOST": "{tdei-postgresql-hostname}",
+      "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
+      "SSL": "TRUE",
+      "POSTGRES_DB": "tdei",
+      "POSTGRES_PORT": "5432",
+      "EXTRACT_LOAD_RESPONSE_TOPIC": "extract-load-response",
+      "AUTH_HOST": "https://{tdei-auth-n-z-hostname}"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "extract-load-service-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  },
+  "tdei-osw-quality-metric": {
+    "app-service-plan": "TDEI-6",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-quality-metric:stage-latest",
+    "always-on": false,
+    "vnet-enabled": true,
+    "publicNetworkAccess": null,
+    "health-check-path": "/health",
+    "health-check-http-status": 200,
+    "application-parameters": {
+      "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+      "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+      "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+      "QUEUECONNECTION": "{service-bus-connection-string}",
+      "STORAGECONNECTION": "{storage-connection-string}",
+      "QUALITY_REQ_TOPIC": "osw-quality-request",
+      "QUALITY_RES_TOPIC": "osw-quality-response",
+      "QUALITY_REQ_SUB": "request-handler"
+    },
+    "diagnostic-settings": {
+      "workspace_id": "{tdei-loganalytics-workspace-id}",
+      "name": "osw-formatter-console.logs",
+      "category": "AppServiceConsoleLogs",
+      "enabled": true
+    }
+  }
 }

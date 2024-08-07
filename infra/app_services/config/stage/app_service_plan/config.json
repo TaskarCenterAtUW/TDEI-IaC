@@ -1,42 +1,58 @@
 [
-    {
-        "plan-name": "TDEI-1",
-        "sku": {
-            "name": "B2",
-            "tier": "BASIC"
-        },
-        "reserved" : true
+  {
+    "plan-name": "TDEI-1",
+    "sku": {
+      "name": "B2",
+      "tier": "BASIC"
     },
-    {
-        "plan-name": "TDEI-2",
-        "sku": {
-            "name": "B2",
-            "tier": "BASIC"
-        },
-        "reserved" : true
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-2",
+    "sku": {
+      "name": "B2",
+      "tier": "BASIC"
     },
-    {
-        "plan-name": "TDEI-3",
-        "sku": {
-            "name": "B2",
-            "tier": "BASIC"
-        },
-        "reserved" : true
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-3",
+    "sku": {
+      "name": "B2",
+      "tier": "BASIC"
     },
-    {
-        "plan-name": "TDEI-4",
-        "sku": {
-            "name": "B2",
-            "tier": "BASIC"
-        },
-        "reserved" : true
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-4",
+    "sku": {
+      "name": "B2",
+      "tier": "BASIC"
     },
-    {
-        "plan-name": "TDEI-5",
-        "sku": {
-            "name": "B2",
-            "tier": "BASIC"
-        },
-        "reserved" : true
-    }
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-5",
+    "sku": {
+      "name": "B2",
+      "tier": "BASIC"
+    },
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-6",
+    "sku": {
+      "name": "B3",
+      "tier": "BASIC"
+    },
+    "reserved": true
+  },
+  {
+    "plan-name": "TDEI-7",
+    "sku": {
+      "name": "P1V3",
+      "tier": "PREMIUMV3"
+    },
+    "reserved": true
+  }
 ]

@@ -57,7 +57,7 @@
     "health-check-http-status": 200,
     "always-on": true,
     "vnet-enabled": true,
-    "publicNetworkAccess": null,
+    "publicNetworkAccess": "Enabled",
     "application-parameters": {
       "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
       "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
@@ -70,6 +70,9 @@
       "name": "gateway-console.logs",
       "category": "AppServiceConsoleLogs",
       "enabled": true
+    },
+    "cors-settings": {
+      "allowed-origins": "*"
     }
   },
   "tdei-datasvc": {
@@ -160,12 +163,12 @@
   },
   "tdei-api-gateway-spec": {
     "app-service-plan": "TDEI-1",
-    "linux-fx-version": "DOCKER|https://index.docker.io/v1/swaggerapi/swagger-ui:prodlatest",
+    "linux-fx-version": "DOCKER|https://index.docker.io/swaggerapi/swagger-ui:latest",
     "health-check-path": "/health/ping",
     "health-check-http-status": 200,
     "always-on": true,
     "vnet-enabled": true,
-    "publicNetworkAccess": null,
+    "publicNetworkAccess": "Enabled",
     "application-parameters": {
       "DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io/v1",
       "QUERY_CONFIG_ENABLED": true,
