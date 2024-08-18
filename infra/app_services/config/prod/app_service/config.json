@@ -72,7 +72,7 @@
       "enabled": true
     },
     "cors-settings": {
-        "allowed-origins": "*"
+      "allowed-origins": "*"
     }
   },
   "tdei-datasvc": {
@@ -306,7 +306,7 @@
   },
   "tdei-osw-validation": {
     "app-service-plan": "TDEI-12",
-    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-validation:prodlatest",
+    "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/osw-validation:main-latest",
     "always-on": false,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
