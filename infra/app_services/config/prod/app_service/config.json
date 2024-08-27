@@ -281,7 +281,7 @@
     "always-on": true,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
-    "health-check-path": "/health",
+    "health-check-path": "/",
     "health-check-http-status": 200,
     "application-parameters": {
       "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
@@ -367,7 +367,7 @@
     "always-on": true,
     "vnet-enabled": true,
     "publicNetworkAccess": null,
-    "health-check-path": "/health",
+    "health-check-path": "/",
     "health-check-http-status": 200,
     "application-parameters": {
       "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
