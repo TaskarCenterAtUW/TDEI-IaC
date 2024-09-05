@@ -5,16 +5,16 @@
         "administrator_login_password" : "{postgresql-administrator-password}"
     },
     "sku": {
-        "name": "Standard_B2s",
+        "name": "Standard_B4ms",
         "tier": "Burstable"
     },
-    "size" : 32,
-    "version" : 14,
+    "availabilityZone": "1",
+    "backup": {"backupRetentionDays": 30, "geoRedundantBackup": "Enabled"},
+    "highAvailability": {"mode": "ZoneRedundant"},
+    "version" : 16,
+    "storage": {"autoGrow": "Enabled", "storageSizeGB": 32, "tier": "P15"},
     "create_mode" : "Create",
     "database" : [
-        "tdei",
-        "gtfsflex",
-        "osw",
-        "gtfspathways"
+        "tdei"
     ]
 }

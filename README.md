@@ -15,6 +15,11 @@ Instructions are provided in the [Documentaion](Documentation/Instructions.md) i
 2. Each component has `dev`, `test`, `stage` and `prod` configurations available
 3. Instructions on how to add a new component / change an existing configuration are provided in the individual folders
 
+### Manual steps involved post prod deployment
+
+1. Reset TDEI admin user password on key cloak dashboard
+2. Regenerate keycloak client secret for tdei-gateway client and update the Auth-n-z service configuration
+
 ### STATUS
 The following services are provisioned at present from the github workflow:
 

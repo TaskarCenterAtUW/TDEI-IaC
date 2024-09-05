@@ -1,0 +1,8 @@
+{
+    "docker-registry-password": "25Q63O57UIAahRmqGxLq=sWkWtLHHtIO",
+    "docker-registry-server-url": "https://tdeidocker.azurecr.io",
+    "docker-registry-server-username": "tdeidocker",
+    "postgresql-administrator-login" : "pgadmin",
+    "postgresql-administrator-password" : "test",
+    "rakesh-test": "rakesh-test-pwd"
+}

@@ -103,31 +103,6 @@
             "enabled": true
         }
     },
-    "tdei-logger": {
-        "app-service-plan": "TDEI-1",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/logger:dev-latest",
-        "always-on": false,
-        "vnet-enabled": false,
-        "publicNetworkAccess": null,
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "MONGODBNAME" : "tdei-logs",
-            "MONGORECORDSCOLLECTION" : "records",
-            "QUEUECONNECTION":"{service-bus-connection-string}",
-            "MONGOURL": "{loggerdb-connection-string}",
-            "TOPICS" : "gtfs-flex-upload,gtfs-flex-validation,osw-upload,osw-validation,osw-data-service,gtfs-flex-data-service,gtfs-pathways-upload,gtfs-pathways-validation,gtfs-pathways-data-service"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "logger-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
     "tdei-gtfs-pathways-validation": {
         "app-service-plan": "TDEI-2",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/gtfs-pathways-validation:dev-latest",
@@ -182,76 +157,6 @@
         "diagnostic-settings": {
             "workspace_id": "{tdei-loganalytics-workspace-id}",
             "name": "gtfs-flex-validation-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-pathways-datasvc" : {
-        "app-service-plan": "TDEI-2",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/data-service:dev-latest",
-        "always-on": false,
-        "vnet-enabled": false,
-        "publicNetworkAccess": null,
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "QUEUECONNECTION":"{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}",
-            "POSTGRES_USER": "{postgresql-administrator-login}",
-            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
-            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "POSTGRES_DB":"gtfspathways",
-            "POSTGRES_PORT": "5432",
-            "DATASVC_TOPIC": "gtfs-pathways-data-service",
-            "VALIDATION_SUBSCRIPTION": "gtfs-pathways-validation-result",
-            "VALIDATION_TOPIC": "gtfs-pathways-validation",
-            "UPLOAD_TOPIC": "gtfs-pathways-upload",
-            "STATION_URL" : "https://{tdei-usermanagement-hostname}/api/v1/station",
-            "GATEWAY_URL": "https://{tdei-gateway-hostname}"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "template-datasvc-ts-console.logs",
-            "category":"AppServiceConsoleLogs",
-            "enabled": true
-        }
-    },
-    "tdei-flex-datasvc": {
-        "app-service-plan": "TDEI-3",
-        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/flex-datasvc-ts:dev-latest",
-        "always-on": false,
-        "vnet-enabled": false,
-        "publicNetworkAccess": null,
-        "health-check-path": "/health/ping",
-        "health-check-http-status": 200,
-        "application-parameters": {
-            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
-            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
-            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
-            "AUTH_HOST": "https://{tdei-auth-n-z-hostname}",
-            "EVENT_BUS_CONNECTION" : "{service-bus-connection-string}",
-            "QUEUECONNECTION": "{service-bus-connection-string}",
-            "STORAGECONNECTION": "{storage-connection-string}",
-            "SERVICE_URL": "https://{tdei-usermanagement-hostname}/api/v1/service",
-            "POSTGRES_USER": "{postgresql-administrator-login}",
-            "POSTGRES_HOST": "{tdei-postgresql-hostname}",
-            "POSTGRES_PASSWORD": "{postgresql-administrator-password}",
-            "POSTGRES_PORT": "5432",
-            "POSTGRES_DB":"gtfsflex",
-            "SSL": "TRUE",
-            "DATASVC_TOPIC": "gtfs-flex-data-service",
-            "VALIDATION_SUBSCRIPTION": "gtfs-flex-validation-result",
-            "VALIDATION_TOPIC": "gtfs-flex-validation",
-            "UPLOAD_TOPIC": "gtfs-flex-upload",
-            "GATEWAY_URL": "https://{tdei-gateway-hostname}"
-        },
-        "diagnostic-settings": {
-            "workspace_id": "{tdei-loganalytics-workspace-id}",
-            "name": "template-flex-datasvc-ts-console.logs",
             "category":"AppServiceConsoleLogs",
             "enabled": true
         }

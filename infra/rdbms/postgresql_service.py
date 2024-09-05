@@ -1,7 +1,7 @@
 import json
 import os
 from azure.mgmt.rdbms.postgresql_flexibleservers import PostgreSQLManagementClient
-from azure.mgmt.rdbms.postgresql_flexibleservers.models import Server, Sku, Storage, Database
+from azure.mgmt.rdbms.postgresql_flexibleservers.models import Server, Sku, Storage, Database, HighAvailability, Backup
 from infra.keyvault.keyvault import KeyVault
 import psycopg2
 import requests
@@ -29,7 +29,7 @@ class PostgreSQLService:
         # Load postgresql config file.
         current_dir = os.path.dirname(__file__)
         config_file = os.path.join(
-            current_dir, "config", config_name, "postgresql.config.json")
+            current_dir, "config", config_name, "config.json")
         postgresql_config_file = open(config_file)
         postgresql_config = json.load(postgresql_config_file)
         print(f"Loaded postgresql config file {config_file}")
@@ -47,10 +47,12 @@ class PostgreSQLService:
                     tier=postgresql_config['sku']['tier']),
             administrator_login=postgresql_config['secrets']['administrator_login'],
             administrator_login_password=postgresql_config['secrets']['administrator_login_password'],
-            storage=Storage(storage_size_gb=postgresql_config['size']),
+            storage=Storage(storage_size_gb=postgresql_config['storage']['storageSizeGB'], auto_grow=postgresql_config['storage']['autoGrow'], tier=postgresql_config['storage']['tier']),
             version=postgresql_config['version'],
             create_mode=postgresql_config['create_mode'],
-            location=location
+            location=location,
+            #high_availability=HighAvailability(mode=postgresql_config['highAvailability']['mode']), # not available for Burstable
+            backup=Backup(backup_retention_days=postgresql_config['backup']['backupRetentionDays'], geo_redundant_backup=postgresql_config['backup']['geoRedundantBackup'])
         )
 
         # Provision PostgreSQL Flexible instance
