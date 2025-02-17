@@ -1,4 +1,6 @@
 *.pyc
+.env
+debug_scripts/*.csv
 .venv
 .venv/*
 .idea
