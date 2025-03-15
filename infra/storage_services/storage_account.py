@@ -34,7 +34,7 @@ class StorageAccount:
                     self.resource_group, storage_account_name,
                     {
                         "location": location,
-                        "kind": "StorageV2",
+                        "kind": storage_config[storage_account]['kind'],
                         "sku": {"name": storage_config[storage_account]['sku']}
                     }
                 )

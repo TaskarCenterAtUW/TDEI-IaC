@@ -1,0 +1,203 @@
+{
+  "docker-registry-password": "docker-registry-password",
+  "docker-registry-server-url": "docker-registry-server-url",
+  "docker-registry-server-username": "docker-registry-server-username",
+  "container-groups": [
+    {
+      "container_group_name": "gtfspathways",
+      "location": "eastus",
+      "containers": [
+        {
+          "name": "gtfspathways",
+          "image": "tdeidocker.azurecr.io/gtfs-pathways-validation:dev-latest",
+          "cpu": 2.0,
+          "memory_in_gb": 8,
+          "ports": [80],
+          "secrets": {
+            "QUEUECONNECTION": "service-bus-connection-string",
+            "STORAGECONNECTION": "storage-connection-string"
+          },
+          "environment_variables": {
+            "REQUEST_TOPIC": "pathways-validation-request",
+            "RESPONSE_TOPIC": "pathways-validation-response",
+            "REQUEST_SUBSCRIPTION": "request-handler",
+            "AUTH_PERMISSION_URL": "https://tdei-auth-n-z-prod.azurewebsites.net/api/v1/hasPermission",
+            "PROVIDER": "Azure"
+          }
+        }
+      ]
+    },
+    {
+      "container_group_name": "backendservice",
+      "location": "eastus",
+      "containers": [
+        {
+          "name": "backendservice",
+          "image": "tdeidocker.azurecr.io/backend-service:dev-latest",
+          "cpu": 2.0,
+          "memory_in_gb": 8,
+          "ports": [80],
+          "secrets": {
+            "QUEUECONNECTION": "service-bus-connection-string",
+            "STORAGECONNECTION": "storage-connection-string",
+            "POSTGRES_USER": "postgresql-administrator-login",
+            "POSTGRES_HOST": "tdei-postgresql-hostname",
+            "POSTGRES_PASSWORD": "postgresql-administrator-password"
+          },
+          "environment_variables": {
+            "BACKEND_RESPONSE_TOPIC": "backend-response",
+            "SSL": "TRUE",
+            "POSTGRES_DB": "tdei",
+            "POSTGRES_PORT": "5432",
+            "AUTH_HOST": "https://tdei-auth-n-z-prod.azurewebsites.net"
+          }
+        }
+      ]
+    },
+    {
+      "container_group_name": "extractloadservice",
+      "location": "eastus",
+      "containers": [
+        {
+          "name": "extractloadservice",
+          "image": "tdeidocker.azurecr.io/extract-load-service:dev-latest",
+          "cpu": 4.0,
+          "memory_in_gb": 16,
+          "ports": [8080],
+          "secrets": {
+            "QUEUECONNECTION": "service-bus-connection-string",
+            "STORAGECONNECTION": "storage-connection-string",
+            "POSTGRES_USER": "postgresql-administrator-login",
+            "POSTGRES_HOST": "tdei-postgresql-hostname",
+            "POSTGRES_PASSWORD": "postgresql-administrator-password"
+          },
+          "environment_variables": {
+            "EXTRACT_LOAD_RESPONSE_TOPIC": "extract-load-response",
+            "SSL": "TRUE",
+            "POSTGRES_DB": "tdei",
+            "POSTGRES_PORT": "5432",
+            "AUTH_HOST": "https://tdei-auth-n-z-prod.azurewebsites.net",
+            "BULK_INSERT_BATCH_SIZE": "1000"
+          }
+        }
+      ]
+    },
+    {
+      "container_group_name": "oswconfidencemetric",
+      "location": "eastus",
+      "containers": [
+        {
+          "name": "oswconfidencemetric",
+          "image": "tdeidocker.azurecr.io/osw-confidence-metric:dev-latest",
+          "cpu": 4.0,
+          "memory_in_gb": 16,
+          "ports": [8080],
+          "secrets": {
+            "QUEUECONNECTION": "service-bus-connection-string",
+            "STORAGECONNECTION": "storage-connection-string",
+            "OSM_PASSWORD": "osm-password",
+            "OSM_USERNAME": "osm-username"
+          },
+          "environment_variables": {
+            "CONFIDENCE_REQ_SUB": "request-handler",
+            "CONFIDENCE_REQ_TOPIC": "osw-confidence-request",
+            "CONFIDENCE_RES_TOPIC": "osw-confidence-response",
+            "AUTH_PERMISSION_URL": "https://tdei-auth-n-z-prod.azurewebsites.net"
+          }
+        }
+      ]
+    },
+    {
+      "container_group_name": "oswvalidation",
+      "location": "eastus",
+      "containers": [
+        {
+          "name": "oswvalidation",
+          "image": "tdeidocker.azurecr.io/osw-validation:dev-latest",
+          "cpu": 4.0,
+          "memory_in_gb": 16,
+          "ports": [8080],
+          "secrets": {
+            "QUEUECONNECTION": "service-bus-connection-string",
+            "STORAGECONNECTION": "storage-connection-string"
+          },
+          "environment_variables": {
+            "VALIDATION_REQ_TOPIC": "osw-validation-request",
+            "VALIDATION_REQ_SUB": "request-handler",
+            "VALIDATION_RES_TOPIC": "osw-validation-response",
+            "AUTH_PERMISSION_URL": "https://tdei-auth-n-z-prod.azurewebsites.net/api/v1/hasPermission",
+            "PROVIDER": "Azure"
+          }
+        }
+      ]
+    },
+    {
+      "container_group_name": "gtfsflexvalidation",
+      "location": "eastus",
+      "containers": [
+        {
+          "name": "gtfsflexvalidation",
+          "image": "tdeidocker.azurecr.io/gtfs-flex-validation:dev-latest",
+          "cpu": 2.0,
+          "memory_in_gb": 8,
+          "ports": [8080],
+          "secrets": {
+            "QUEUECONNECTION": "service-bus-connection-string",
+            "STORAGECONNECTION": "storage-connection-string"
+          },
+          "environment_variables": {
+            "REQUEST_TOPIC": "flex-validation-request",
+            "REQUEST_SUBSCRIPTION": "request-handler",
+            "RESPONSE_TOPIC": "flex-validation-response",
+            "AUTH_PERMISSION_URL": "https://tdei-auth-n-z-prod.azurewebsites.net/api/v1/hasPermission",
+            "PROVIDER": "Azure"
+          }
+        }
+      ]
+    },
+    {
+      "container_group_name": "oswformatter",
+      "location": "eastus",
+      "containers": [
+        {
+          "name": "oswformatter",
+          "image": "tdeidocker.azurecr.io/osw-formatter:dev-latest",
+          "cpu": 8.0,
+          "memory_in_gb": 32,
+          "ports": [80],
+          "secrets": {
+            "QUEUECONNECTION": "service-bus-connection-string",
+            "STORAGECONNECTION": "storage-connection-string"
+          },
+          "environment_variables": {
+            "FORMATTER_SUBSCRIPTION": "request-handler",
+            "FORMATTER_TOPIC": "osw-formatting-request",
+            "FORMATTER_UPLOAD_TOPIC": "osw-formatting-response"
+          }
+        }
+      ]
+    },
+    {
+      "container_group_name": "oswqualitymetric",
+      "location": "eastus",
+      "containers": [
+        {
+          "name": "oswqualitymetric",
+          "image": "tdeidocker.azurecr.io/osw-quality-metric:dev-latest",
+          "cpu": 8.0,
+          "memory_in_gb": 32,
+          "ports": [80],
+          "secrets": {
+            "QUEUECONNECTION": "service-bus-connection-string",
+            "STORAGECONNECTION": "storage-connection-string"
+          },
+          "environment_variables": {
+            "QUALITY_REQ_TOPIC": "osw-quality-request",
+            "QUALITY_RES_TOPIC": "osw-quality-response",
+            "QUALITY_REQ_SUB": "request-handler"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "properties": {
+    "addressSpace": {"addressPrefixes": ["10.15.0.0/20"]},
+    "subnets":
+    [
+      {
+        "name": "TDEI-1-subnet",
+        "properties": {
+          "addressPrefix": "10.15.1.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-1",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-2-subnet",
+        "properties": {
+          "addressPrefix": "10.15.2.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-2",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-3-subnet",
+        "properties": {
+          "addressPrefix": "10.15.3.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-3",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-4-subnet",
+        "properties": {
+          "addressPrefix": "10.15.4.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-4",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-5-subnet",
+        "properties": {
+          "addressPrefix": "10.15.5.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-5",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-6-subnet",
+        "properties": {
+          "addressPrefix": "10.15.6.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-6",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-7-subnet",
+        "properties": {
+          "addressPrefix": "10.15.7.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-7",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-8-subnet",
+        "properties": {
+          "addressPrefix": "10.15.8.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-8",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-9-subnet",
+        "properties": {
+          "addressPrefix": "10.15.9.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-9",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-10-subnet",
+        "properties": {
+          "addressPrefix": "10.15.10.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-10",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-11-subnet",
+        "properties": {
+          "addressPrefix": "10.15.11.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-11",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-12-subnet",
+        "properties": {
+          "addressPrefix": "10.15.12.0/24",
+          "delegations": [
+            {
+              "name": "TDEI-12",
+              "properties": {"serviceName": "Microsoft.Web/serverfarms"}
+            }
+          ]
+        }
+      },
+      {
+        "name": "TDEI-PE-subnet",
+        "properties": {
+          "addressPrefix": "10.15.0.0/24"
+        }
+      }
+    ]
+  }
+}
