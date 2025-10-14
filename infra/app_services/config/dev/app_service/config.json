@@ -481,7 +481,7 @@
      "tdei-pm-tiles-gen": {
         "app-service-plan": "TDEI-7",
         "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/tdei-pm-tiles-gen:dev-latest",
-        "always-on": false,
+        "always-on": true,
         "vnet-enabled": false,
         "publicNetworkAccess": null,
         "health-check-path": "/health",

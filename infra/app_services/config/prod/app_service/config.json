@@ -327,5 +327,31 @@
             "category":"AppServiceConsoleLogs",
             "enabled": true
         }
+    },
+    "tdei-pm-tiles-gen": {
+        "app-service-plan": "TDEI-7",
+        "linux-fx-version": "DOCKER|tdeidocker.azurecr.io/tdei-pm-tiles-gen:prodlatest",
+        "always-on": true,
+        "vnet-enabled": false,
+        "publicNetworkAccess": null,
+        "health-check-path": "/health",
+        "health-check-http-status": 200,
+        "application-parameters": {
+            "DOCKER_REGISTRY_SERVER_PASSWORD": "{docker-registry-password}",
+            "DOCKER_REGISTRY_SERVER_URL": "{docker-registry-server-url}",
+            "DOCKER_REGISTRY_SERVER_USERNAME": "{docker-registry-server-username}",
+            "QUEUECONNECTION":"{service-bus-connection-string}",
+            "STORAGECONNECTION": "{storage-connection-string}",
+            "PROVIDER": "Azure",
+            "FORMATTER_TOPIC": "pm-tiles-gen-request",
+            "FORMATTER_UPLOAD_TOPIC": "pm-tiles-gen-response",
+            "FORMATTER_SUBSCRIPTION": "request-handler"
+        },
+        "diagnostic-settings": {
+            "workspace_id": "{tdei-loganalytics-workspace-id}",
+            "name": "pm-tiles-gen-console.logs",
+            "category":"AppServiceConsoleLogs",
+            "enabled": true
+        }
     }
 }
