@@ -443,9 +443,52 @@
                 }
             ]
 
+        },
+        {
+            "name":"pm-tiles-gen-request",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "tags": {
+                "env": "dev"
+            },
+            "subscriptions":[
+                {
+                    "name": "request-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 1     
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name":"pm-tiles-gen-response",
+            "parameters": {
+                "properties": {
+                    "max_size_in_megabytes": 1024,
+                    "max_message_size_in_kilobytes": 100,
+                    "default_message_time_to_live": "P14D"
+                }
+            },
+            "tags": {
+                "env": "dev"
+            },
+            "subscriptions":[
+                {
+                    "name": "res-handler",
+                    "parameters": {
+                        "properties": {
+                            "max_delivery_count": 1     
+                        }
+                    }
+                }
+            ]
         }
-    ],
-    "tags": {
-        "env": "dev"
-    }
+    ]
 }
